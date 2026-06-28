@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마추다 MACHUDA | 마이페이지 & 시안 게시판</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Header Navigation -->
+  <header class="app-header">
+    <a href="index.html" class="logo">MACHUDA<span>.</span></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">홈</a>
+      <a href="order-form.html" class="nav-link">스마트 주문서</a>
+      <a href="proof-dashboard.html" class="nav-link active">시안 게시판</a>
+      <a href="#" class="nav-link">포트폴리오</a>
+      <a href="#" class="nav-link">고객센터</a>
+    </nav>
+    <div class="header-actions">
+      <a href="proof-dashboard.html" class="btn btn-primary btn-sm">마이페이지</a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container" style="padding-top: 20px;">
+    <div class="glass-card">
+      <div class="page-header">
+        <h2>시안 확인 및 주문 처리</h2>
+        <p>전담 디자이너와 실시간으로 시안 피드백을 조율하세요. 시안 최종 확정 시 결제 및 제작이 즉시 시작됩니다.</p>
+      </div>
+
+      <div class="board-layout">
+        <!-- Sidebar Proof List -->
+        <div class="proof-sidebar-list" id="proof-sidebar-cards">
+          <!-- Injected by app.js -->
+        </div>
+
+        <!-- Right Detail Pane -->
+        <div class="proof-detail-pane" id="proof-main-pane">
+          <!-- Dynamically Injected by app.js -->
+          <div class="empty-state">
+            <div class="empty-icon">✉</div>
+            <p>왼쪽 목록에서 피드백을 진행할 시안을 선택해 주세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Figma-compliant Design Confirmation Warning Modal -->
+  <div class="modal-overlay" id="confirm-modal" style="display: none;">
+    <div class="modal-card glass-card" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3>⚠️ 시안 최종 확정 주의사항</h3>
+        <button class="modal-close" onclick="closeConfirmModal()">✕</button>
+      </div>
+      <div class="modal-body" style="text-align: left; padding: 20px 0;">
+        <p style="font-size: 14px; color: hsl(var(--text-muted)); margin-bottom: 20px; line-height: 1.5;">시안을 최종 확정(컨펌)하시면 공장 생산 부서로 작업지시서가 자동으로 이관됩니다. 아래 내용을 꼼꼼히 체크해 주십시오.</p>
+        
+        <div class="checklist-container">
+          <label class="check-row">
+            <input type="checkbox" class="confirm-check" id="check-option-1">
+            <span class="check-label">주문서에 기재된 의류 종류, 색상, 사이즈별 수량을 올바르게 확인하였습니다.</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" class="confirm-check" id="check-option-2">
+            <span class="check-label">시안 내 인쇄 크기, 위치, 텍스트 오탈자 및 배치 구성을 확인하였으며 확정 후 수정불가함을 인지하였습니다.</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox" class="confirm-check" id="check-option-3">
+            <span class="check-label">선결제 주문건의 경우 시안 확정 후 결제가 완료되어야 제작이 진행되며, 관공서/학교 등 후불결제건은 확정 즉시 제작됨을 확인했습니다.</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button class="btn btn-secondary" onclick="closeConfirmModal()">취소</button>
+        <button class="btn btn-primary" id="btn-modal-final-approve" disabled onclick="executeFinalApprove()">최종 시안 확정</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simulated Payment Completion Modal -->
+  <div class="modal-overlay" id="payment-modal" style="display: none;">
+    <div class="modal-card glass-card" style="max-width: 420px; text-align: center;">
+      <div class="success-icon" style="font-size: 48px; color: hsl(var(--status-approved)); margin-bottom: 16px;">💳</div>
+      <h3>단체복 결제 완료</h3>
+      <p style="font-size: 14px; color: hsl(var(--text-muted)); margin: 12px 0 24px 0; line-height: 1.5;">결제가 완료되었습니다. 공장에서 즉시 재단 및 인쇄/자수 제작에 들어가며, 제작 진행 상태는 마이페이지에서 추적하실 수 있습니다.</p>
+      <button class="btn btn-primary btn-block" onclick="closePaymentModal()">확인</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="mock-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

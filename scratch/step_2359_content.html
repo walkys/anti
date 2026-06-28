@@ -1,0 +1,71 @@
+Created At: 2026-06-20T05:27:24Z
+Completed At: 2026-06-20T05:27:24Z
+File Path: `file:///Users/walky/Documents/anti/list.html`
+Total Lines: 172
+Total Bytes: 9357
+Showing lines 70 to 134
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+70:         </ul>
+71: 
+72:         <div class="notice">
+73:             <div class="gallery_list">
+74:                 <ul module="board_notice_8">
+75:                     <!--
+76:                         $login_page_url = /member/login.html
+77:                         $deny_access_url = /index.html
+78:                     -->
+79:                     <li class="machuda-raw-row xans-record-" data-subject="{$subject}" data-category="{$category_name}" data-image="{$img_src|replace:gallery,}">
+80:                         <a href="{$link_board_detail}" class="imgLink"><img src="{$img_src|replace:gallery,}" onerror="this.src='//img.echosting.cafe24.com/thumb/198x198.gif'" alt="" /></a>
+81:                         <div class="description">
+82:                             <p class="subject">{$checkbox}<!--{$notice_icon}--> {$category_name} <a href="{$link_board_detail}"> {$subject} {$icon_new} {$comment_count}</a></p>
+83:                             <div class="machuda-json-data" style="display:none !important;">{$content}</div>
+84:                         </div>
+85:                     </li>
+86:                 </ul>
+87:             </div>
+88:             
+89:             <div class="gallery_list">
+90:                 <ul module="board_fixed_8">
+91:                     <!--
+92:                         $login_page_url = /member/login.html
+93:                         $deny_access_url = /index.html
+94:                     -->
+95:                     <li class="machuda-raw-row xans-record-" data-subject="{$subject}" data-category="{$category_name}" data-image="{$img_src|replace:gallery,}">
+96:            
+<truncated 518 bytes>
+                 </div>
+101:                     </li>
+102:                 </ul>
+103:             </div>
+104:         </div>
+105: 
+106:         <div class="gallery_list" id="machuda-raw-data-table">
+107:             <ul module="board_list_8">
+108:                 <!--
+109:                     $count = 15
+110:                     $login_page_url = /member/login.html
+111:                     $deny_access_url = /index.html
+112:                 -->
+113:                 <li class="machuda-raw-row xans-record-" data-subject="{$subject}" data-category="{$category_name}" data-image="{$img_src|replace:gallery,}">
+114:                     <a href="{$link_board_detail}" class="imgLink"><img src="{$img_src|replace:gallery,}" onerror="this.src='//img.echosting.cafe24.com/thumb/198x198.gif'" alt="" /></a>
+115:                     <div class="description">
+116:                         <p class="subject">{$checkbox}<!--{$fixed_icon}--> {$category_name} <a href="{$link_board_detail}"><br/><span>{$subject|cut:12,…}</span></a></p>
+117:                         <div class="machuda-json-data" style="display:none !important;">{$content}</div>
+118:                     </div>
+119:                     <div class="readbtn"><a href="{$link_board_detail}">READ MORE</a></div>
+120:                 </li>
+121:             </ul>
+122:         </div>
+123:         
+124:         <div class="boardListEmpty {$empty_display|display}" module="board_empty_8">
+125:             <p>{$empty_message}</p>
+126:         </div>
+127: 
+128:         <div module="board_ButtonList_8" class="ec-base-button typeBG {$write_display|display}">
+129:             <span class="gRight">
+130:                 <a href="/board/gallery/write.html{$param_write}" class="btnSubmitFix sizeS {$write_display|display}">글쓰기</a>
+131:             </span>
+132:         </div>
+133:     </div>
+134: </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

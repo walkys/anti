@@ -1,0 +1,178 @@
+<!--@layout(/layout/basic/layout.html)-->
+<!-- [마추다 추가] 캐시 방지를 위해 최신 파일로 직접 연결 (버전 번호 관리) -->
+<link rel="stylesheet" href="/web/upload/machuda-portfolio.css?v=2.9">
+<script>
+    (function() {
+        const regex = new RegExp("[\\?&]board_no=([^&#]*)");
+        const results = regex.exec(location.search);
+        let boardNo = "";
+        if (results !== null) {
+            boardNo = decodeURIComponent(results[1].replace(/\+/g, " "));
+        } else {
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            const boardIdx = pathParts.indexOf('board');
+            if (boardIdx !== -1) {
+                for (let i = pathParts.length - 1; i > boardIdx; i--) {
+                    if (/^\d+$/.test(pathParts[i])) {
+                        boardNo = pathParts[i];
+                        break;
+                    }
+                }
+            }
+        }
+        const isBoardPage = window.location.pathname.includes('/board/');
+        // Only hide raw content and show portfolio layout if it is NOT a board page (homepage) OR if it is board_no 2 (portfolio)
+        if (!isBoardPage || boardNo === '2') {
+            document.documentElement.classList.add('machuda-portfolio-active');
+        }
+        // 게시판 번호를 html 태그에 class로 추가 → CSS 스코핑용
+        if (boardNo) {
+            document.documentElement.classList.add('machuda-board-' + boardNo);
+        }
+    })();
+</script>
+<script src="/web/upload/machuda-portfolio.js?v=3.3"></script>
+
+<div module="Board_ListPackage_8">
+    <!--@css(/css/module/board/listPackage_gallary.css)-->
+    
+    <div module="board_title_8">
+        <div class="titleArea photo">
+            <h2>{$board_title}</h2>
+            <p>{$board_info}</p>
+        </div>
+        <p class="imgArea">{$board_top_image}</p>
+    </div>
+
+    <!-- [마추다 추가] 카테고리 탭 분류 버튼 영역 (포트폴리오 게시판 전용) -->
+    <div class="machuda-portfolio-tabs" id="machuda-dynamic-tabs" style="display: none; justify-content: center; gap: 10px; margin-top: 30px; margin-bottom: 30px;">
+        <button type="button" class="machuda-tab-btn active" data-filter="all">전체보기</button>
+        <button type="button" class="machuda-tab-btn" data-filter="company">회사/근무복</button>
+        <button type="button" class="machuda-tab-btn" data-filter="school">학교/반티</button>
+        <button type="button" class="machuda-tab-btn" data-filter="church">종교/가족</button>
+        <button type="button" class="machuda-tab-btn" data-filter="sports">동호회/굿즈</button>
+        <button type="button" class="machuda-tab-btn" data-filter="sauna">가게/기타</button>
+    </div>
+
+    <!-- [마추다 추가] 갤러리 카드가 자동으로 파싱되어 그려지는 곳 (포트폴리오 게시판 전용) -->
+    <div class="machuda-portfolio-grid" id="machuda-dynamic-grid" style="display: none; margin-bottom: 50px;">
+        <!-- 스크립트가 게시판 글 데이터를 바탕으로 카드를 여기에 자동으로 채워줍니다 -->
+    </div>
+
+    <!-- 기존 게시판 목록 테이블 숨김 영역 (기본 노출, 포트폴리오 게시판에서만 스크립트/CSS로 숨김) -->
+    <div id="machuda-raw-board-wrap">
+        <!-- 게시판 탭메뉴 -->
+        <div class="DB_board_cate"></div>
+        
+        <div class="boardSort" style="display:none !important;">
+            <span module="board_category_8">{$form.board_category}</span>
+        </div>
+
+        <ul module="board_listheader_8" style="display:none !important;">
+            <li><a class="btnNormal {$list_type_display|display}" href="/board/gallery/list.html{$param_list}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_type_image.gif" alt="" /> 이미지형으로 보기</a></li>
+            <li><a class="btnNormal {$list_type_display|display}" href="/board/gallery/list2.html{$param_list}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_type_list.gif" alt="" /> 리스트형으로 보기</a></li>
+        </ul>
+
+        <div class="notice">
+            <div class="gallery_list" module="board_notice_8">
+                <!--
+                    $login_page_url = /member/login.html
+                    $deny_access_url = /index.html
+                -->
+                <ul>
+                    <li>
+                        <a href="{$link_board_detail}" class="imgLink"><img src="{$img_src|replace:gallery,}" onerror="this.src='//img.echosting.cafe24.com/thumb/198x198.gif'" alt="" /></a>
+                        <div class="description" data-subject="{$subject}" data-category="{$category_name}" data-image="{$img_src|replace:gallery,}">
+                            <p class="subject">{$checkbox}<!--{$notice_icon}--> {$category_name} <a href="{$link_board_detail}"> {$subject} {$icon_new} {$comment_count}</a></p>
+                            <div class="machuda-json-data" style="display:none !important;">{$content}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="gallery_list" module="board_fixed_8">
+                <!--
+                    $login_page_url = /member/login.html
+                    $deny_access_url = /index.html
+                -->
+                <ul>
+                    <li>
+                        <a href="{$link_board_detail}" class="imgLink"><img src="{$img_src|replace:gallery,}" onerror="this.src='//img.echosting.cafe24.com/thumb/198x198.gif'" alt="" /></a>
+                        <div class="description" data-subject="{$subject}" data-category="{$category_name}" data-image="{$img_src|replace:gallery,}">
+                            <p class="subject">{$checkbox} {$category_name} <a href="{$link_board_detail}"> {$subject} {$icon_new} {$comment_count}</a></p>
+                            <div class="machuda-json-data" style="display:none !important;">{$content}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="machuda-raw-data-table">
+            <div class="gallery_list" module="board_list_8">
+                <!--
+                    $count = 15
+                    $login_page_url = /member/login.html
+                    $deny_access_url = /index.html
+                -->
+                <ul>
+                    <li>
+                        <a href="{$link_board_detail}" class="imgLink"><img src="{$img_src|replace:gallery,}" onerror="this.src='//img.echosting.cafe24.com/thumb/198x198.gif'" alt="" /></a>
+                        <div class="description" data-subject="{$subject}" data-category="{$category_name}" data-image="{$img_src|replace:gallery,}">
+                            <p class="subject">{$checkbox}<!--{$fixed_icon}--> {$category_name} <a href="{$link_board_detail}"><br/><span>{$subject}</span></a></p>
+                            <div class="machuda-json-data" style="display:none !important;">{$content}</div>
+                            <div class="readbtn"><a href="{$link_board_detail}">READ MORE</a></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="boardListEmpty {$empty_display|display}" module="board_empty_8">
+            <p>{$empty_message}</p>
+        </div>
+    </div>
+</div>
+
+<!-- [마추다] 글쓰기 버튼: #machuda-raw-board-wrap 바깥으로 이동하여 board_no=2에서도 관리자에게 표시됨 -->
+<div module="board_ButtonList_8" class="ec-base-button typeBG {$write_display|display}">
+    <span class="gRight">
+        <a href="/board/gallery/write.html{$param_write}" class="btnSubmitFix sizeS {$write_display|display}">글쓰기</a>
+    </span>
+</div>
+
+<div module="board_paging_8" class="ec-base-paginate">
+    <a href="{$param_prev}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_page_prev.gif" alt="이전 페이지" /></a>
+    <ol>
+        <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
+        <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
+    </ol>
+    <a href="{$param_next}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_page_next.gif" alt="다음 페이지" /></a>
+</div>
+
+<div module="board_search_8">
+    <!--@css(/css/module/board/search.css)-->
+    <fieldset class="boardSearch">
+        <legend>게시물 검색</legend>
+        <p>{$form.search_date} {$form.search_key} {$form.search} <a href="#none" class="btnEmFix" onclick="{$action_search}">찾기</a></p>
+    </fieldset>
+</div>
+
+<!-- 관리자 전용 메뉴 -->
+<div module="board_catemove_8">
+    <!--@css(/css/module/board/catemove.css)-->
+    <p>
+        {$board_catemove_selectbox}
+        <a href="#none" class="btnNormal" onclick="{$action_category_move}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_move.gif" alt="" /> {$category_move}</a>
+    </p>
+</div>
+
+<div module="board_function_8">
+    <!--@css(/css/module/board/function.css)-->
+    <p>
+        {$board_function_selectbox}
+        <a href="#none" class="btnNormal" onclick="{$action_article_move}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_move.gif" alt="" /> {$article_move}</a>
+        <a href="#none" class="btnNormal" onclick="{$action_article_copy}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_copy.gif" alt="" /> {$article_copy}</a>
+        {$board_function_help}
+    </p>
+</div>
+<!-- // 관리자 전용 메뉴 -->

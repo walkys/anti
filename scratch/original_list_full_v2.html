@@ -1,0 +1,95 @@
+Created At: 2026-06-20T05:40:39Z
+Completed At: 2026-06-20T05:40:39Z
+File Path: `file:///Users/walky/Documents/anti/scratch/original_list_html.txt`
+Total Lines: 106
+Total Bytes: 4121
+Showing lines 1 to 106
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <USER_REQUEST>
+2: 
+3: 
+4: 
+5: <!--@layout(/layout/basic/layout.html)-->
+6: <div module="Board_ListPackage_8">
+7:     <!--@css(/css/module/board/listPackage_gallary.css)-->
+8:     
+9:     <div module="board_title_8">
+10:         <div class="titleArea photo">
+11:             <h2>{$board_title}</h2>
+12:             <p>{$board_info}</p>
+13:         </div>
+14:         <p class="imgArea">{$board_top_image}</p>
+15:     </div>
+16: 
+17:     <!-- 게시판 탭메뉴 -->
+18:     <div class="DB_board_cate"></div>
+19:     
+20:     
+21:     <div class="boardSort">
+22:         <span module="board_category_8">{$form.board_category}</span>
+23:     </div>
+24: 
+25:     
+26:     <ul module="board_listheader_8">
+27:         <li><a class="btnNormal {$list_type_display|display}" href="/board/gallery/list.html{$param_list}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_type_image.gif" alt="" /> 이미지형으로 보기</a></li>
+28:         <li><a class="btnNormal {$list_type_display|display}" href="/board/gallery/list2.html{$param_list}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_type_list.gif" alt="" /> 리스트형으로 보기</a></li>
+29:     </ul>
+30: 
+31: 
+32:     <div class="notice">
+33:         <div module="board_notice_8" class="gallery_list">
+34:             
+35:             <!--
+36:                 $login_page_url = /member/login.html
+37:                 $deny_access_url = /index.html
+38:             -->
+39:             <ul>
+40:                 <li>
+41:                 <a href="{$link_board_detail}" class="imgLink"><img src="{$img_src|replace:gall
+<truncated 977 bytes>
+.echosting.cafe24.com/skin/base/common/btn_page_prev.gif" alt="이전 페이지" /></a>
+63:         <ol>
+64:             <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
+65:             <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
+66:         </ol>
+67:         <a href="{$param_next}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_page_next.gif" alt="다음 페이지" /></a>
+68:     </div>
+69: 
+70: <div module="board_search_8">
+71:     <!--@css(/css/module/board/search.css)-->
+72:     <fieldset class="boardSearch">
+73:         <legend>게시물 검색</legend>
+74:         <p>{$form.search_date} {$form.search_key} {$form.search} <a href="#none" class="btnEmFix" onclick="{$action_search}">찾기</a></p>
+75:     </fieldset>
+76: </div>
+77: 
+78: <!-- 관리자 전용 메뉴 -->
+79: <div module="board_catemove_8">
+80:     <!--@css(/css/module/board/catemove.css)-->
+81:     <p>
+82:         {$board_catemove_selectbox}
+83:         <a href="#none" class="btnNormal" onclick="{$action_category_move}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_move.gif" alt="" /> {$category_move}</a>
+84:     </p>
+85: </div>
+86: 
+87: <div module="board_function_8">
+88:     <!--@css(/css/module/board/function.css)-->
+89:     <p>
+90:         {$board_function_selectbox}
+91:         <a href="#none" class="btnNormal" onclick="{$action_article_move}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_move.gif" alt="" /> {$article_move}</a>
+92:         <a href="#none" class="btnNormal" onclick="{$action_article_copy}"><img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_copy.gif" alt="" /> {$article_copy}</a>
+93:         {$board_function_help}
+94:     </p>
+95: </div>
+96: <!-- // 관리자 전용 메뉴 -->
+97: 
+98: 
+99: 
+100: 
+101: 
+102: </USER_REQUEST>
+103: <ADDITIONAL_METADATA>
+104: The current local time is: 2026-06-20T13:45:11+09:00.
+105: </ADDITIONAL_METADATA>
+106: 
+The above content shows the entire, complete file contents of the requested file.

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board 4 Gallery Test</title>
+
+<!-- 카페24 기본 갤러리 CSS 시뮬레이션 (실제 cafe24 listPackage_gallary.css 규칙 포함) -->
+<style>
+/* ==== CAFE24 BASE CSS (실제 .xans-board-listpackage-8 규칙) ==== */
+.xans-board-listpackage-8 .gallery_list { clear:both; overflow:hidden; }
+.xans-board-listpackage-8 .gallery_list ul { display:block; min-width:756px; margin:0; font-size:0; line-height:0; letter-spacing:-5px; }
+.xans-board-listpackage-8 .gallery_list li { position:relative; display:inline-block; width: 32%; margin-right: 2%; margin-bottom: 80px; padding:10px 0 0; font-size:12px; color:#333; line-height:18px; vertical-align:top; letter-spacing:0; }
+.xans-board-listpackage-8 .gallery_list li:nth-child(3n){ margin-right:0; }
+.xans-board-listpackage-8 .gallery_list li .imgLink { 
+    position:relative; display:block; width:100%; 
+    height: 410px;      /* ← 이게 문제 원인! */
+    max-height:410px;   /* ← 이것도 */
+    margin:0 auto 10px; outline:1px solid #ddd; overflow:hidden; 
+}
+.xans-board-listpackage-8 .gallery_list li .imgLink img { 
+    position: absolute; 
+    transform: translateX(-50%) translateY(-50%);  /* ← 이것도 문제 */
+    top: 50%; left: 50%; 
+    min-width: 100%; min-height: 100%; 
+    width: auto; height: auto;   /* ← 이것도 */
+}
+</style>
+
+<!-- 우리 machuda CSS (실제 파일에서 Board 4 부분만 추출) -->
+<style>
+/* ==== 우리 CSS - machuda-portfolio.css Board 4 섹션 ==== */
+/* ① 가장 바깥 wrapper: flex 컨테이너 */
+.machuda-board-4 #machuda-raw-data-table {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    align-items: flex-start !important;
+    margin: 20px 0 40px !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* ② 각 gallery_list div = 카드 1개 (33.333% 너비) */
+.machuda-board-4 #machuda-raw-data-table > .gallery_list {
+    flex: 0 0 calc(33.333% - 14px) !important;
+    max-width: calc(33.333% - 14px) !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    border: 1px solid #e8e8e8 !important;
+    background: #fff !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+    transition: box-shadow 0.25s ease, transform 0.25s ease !important;
+    overflow: hidden !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ③ gallery_list 안의 ul/li는 단순 block */
+.machuda-board-4 #machuda-raw-data-table > .gallery_list > ul {
+    display: block !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;      /* cafe24의 min-width:756px 제거 */
+    font-size: initial !important;
+    line-height: initial !important;
+    letter-spacing: 0 !important;
+}
+
+.machuda-board-4 #machuda-raw-data-table > .gallery_list > ul > li {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    box-sizing: border-box !important;
+    position: static !important;
+}
+
+/* ④ 썸네일 이미지: 1:1 정사각형 */
+.machuda-board-4 #machuda-raw-data-table > .gallery_list > ul > li > a.imgLink,
+.machuda-board-4 .xans-board-listpackage-8 .gallery_list li .imgLink,
+.machuda-board-4 .gallery_list ul li a.imgLink {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 0 !important;
+    max-height: none !important;
+    padding-top: 100% !important;
+    overflow: hidden !important;
+    background: #f0f0f0 !important;
+    outline: none !important;
+    margin: 0 !important;
+}
+
+.machuda-board-4 #machuda-raw-data-table > .gallery_list > ul > li > a.imgLink img,
+.machuda-board-4 .xans-board-listpackage-8 .gallery_list li .imgLink img,
+.machuda-board-4 .gallery_list ul li a.imgLink img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    display: block !important;
+    transform: none !important;
+}
+</style>
+
+<style>
+body { font-family: sans-serif; margin: 20px; background: #f5f5f5; }
+h2 { margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<h2>Board 4 갤러리 테스트 (카페24 구조 시뮬레이션)</h2>
+<p style="color:red; font-weight:bold;">이미지가 정사각형으로 나오면 ✅ 성공 / 길쭉하거나 회색 빈 공간이 있으면 ❌ 실패</p>
+
+<!-- 실제 카페24가 생성하는 HTML 구조 완전 재현 -->
+<html class="machuda-board-4">
+<div id="machuda-raw-data-table">
+
+    <!-- 카드 1 -->
+    <div class="xans-element- xans-board xans-board-list-8 xans-board-list xans-board-8 gallery_list xans-record-">
+        <ul>
+            <li>
+                <a href="#" class="imgLink">
+                    <img src="https://picsum.photos/400/600" alt="test image tall"/>
+                </a>
+                <div class="description">
+                    <p class="subject">대학교/과티 <a href="#"><br/><span>후드집업 단체복 맞췄는데 다들 만족해해요!</span></a></p>
+                    <div class="readbtn"><a href="#">READ MORE</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 카드 2 -->
+    <div class="xans-element- xans-board xans-board-list-8 xans-board-list xans-board-8 gallery_list xans-record-">
+        <ul>
+            <li>
+                <a href="#" class="imgLink">
+                    <img src="https://picsum.photos/600/300" alt="test image wide"/>
+                </a>
+                <div class="description">
+                    <p class="subject">기타단체복 <a href="#"><br/><span>덕분에 따뜻하게 응원했습니다</span></a></p>
+                    <div class="readbtn"><a href="#">READ MORE</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 카드 3 -->
+    <div class="xans-element- xans-board xans-board-list-8 xans-board-list xans-board-8 gallery_list xans-record-">
+        <ul>
+            <li>
+                <a href="#" class="imgLink">
+                    <img src="https://picsum.photos/400/400" alt="test image square"/>
+                </a>
+                <div class="description">
+                    <p class="subject">교회티/성당티 <a href="#"><br/><span>단체티</span></a></p>
+                    <div class="readbtn"><a href="#">READ MORE</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 카드 4 -->
+    <div class="xans-element- xans-board xans-board-list-8 xans-board-list xans-board-8 gallery_list xans-record-">
+        <ul>
+            <li>
+                <a href="#" class="imgLink">
+                    <img src="https://picsum.photos/500/700" alt="test image"/>
+                </a>
+                <div class="description">
+                    <p class="subject">대학교/과티 <a href="#"><br/><span>주문제작 후기</span></a></p>
+                    <div class="readbtn"><a href="#">READ MORE</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 카드 5 -->
+    <div class="xans-element- xans-board xans-board-list-8 xans-board-list xans-board-8 gallery_list xans-record-">
+        <ul>
+            <li>
+                <a href="#" class="imgLink">
+                    <img src="https://picsum.photos/300/500" alt="test image"/>
+                </a>
+                <div class="description">
+                    <p class="subject">기타단체복 <a href="#"><br/><span>티셔츠 잘 받았습니다</span></a></p>
+                    <div class="readbtn"><a href="#">READ MORE</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 카드 6 -->
+    <div class="xans-element- xans-board xans-board-list-8 xans-board-list xans-board-8 gallery_list xans-record-">
+        <ul>
+            <li>
+                <a href="#" class="imgLink">
+                    <img src="https://picsum.photos/450/450" alt="test image"/>
+                </a>
+                <div class="description">
+                    <p class="subject">동호회티 <a href="#"><br/><span>마추다에서 맞춘 단체복</span></a></p>
+                    <div class="readbtn"><a href="#">READ MORE</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</html>
+
+</body>
+</html>

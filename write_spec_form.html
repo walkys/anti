@@ -1,0 +1,330 @@
+<!-- =========================================================================
+     [마추다 최종] 포트폴리오 스펙 입력 폼 및 자동 연동 스크립트
+     설치 방법: 이 코드 전체를 Cafe24 스마트디자인 편집기에서 
+     /board/free/write.html (혹은 해당 글쓰기 파일) 맨 밑에 붙여넣고 저장하세요.
+     ========================================================================= -->
+
+<style>
+/* 스펙 등록 폼 스타일링 */
+#machuda-spec-form-container {
+    background: #ffffff;
+    border: 2px solid #ffd300;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 20px 0;
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+.machuda-spec-form-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ffd300;
+    padding-bottom: 12px;
+}
+.machuda-spec-badge {
+    background: #ffd300;
+    color: #111111;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+.machuda-spec-form-header h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111111;
+    margin: 0;
+}
+.machuda-spec-form-header p {
+    font-size: 13px;
+    color: #666666;
+    margin: 4px 0 0 0;
+}
+.machuda-spec-form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+@media (max-width: 768px) {
+    .machuda-spec-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .machuda-spec-field.full-width {
+        grid-column: span 1 !important;
+    }
+}
+.machuda-spec-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.machuda-spec-field.full-width {
+    grid-column: span 3;
+}
+.machuda-spec-field label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333333;
+}
+.machuda-spec-field input[type="text"],
+.machuda-spec-field select,
+.machuda-spec-field textarea {
+    padding: 8px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #111111;
+    background: #ffffff;
+    box-sizing: border-box;
+    width: 100%;
+}
+.machuda-spec-field input[type="text"]:focus,
+.machuda-spec-field select:focus,
+.machuda-spec-field textarea:focus {
+    border-color: #ffd300;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 211, 0, 0.2);
+}
+</style>
+
+<div id="machuda-spec-form-wrapper" style="display: none;">
+    <div id="machuda-spec-form-container">
+        <div class="machuda-spec-form-header">
+            <span class="machuda-spec-badge">PORTFOLIO DATA</span>
+            <h3>마추다 납품사례 상세 스펙 등록</h3>
+            <p>여기에 입력한 정보가 메인화면 포트폴리오 갤러리 카드로 자동으로 변환되어 나타납니다.</p>
+        </div>
+        
+        <div class="machuda-spec-form-grid">
+            <div class="machuda-spec-field">
+                <label>상품 ID (영어/숫자)</label>
+                <input type="text" id="m_prodId" placeholder="예: hoodie_varsity" value="">
+            </div>
+            <div class="machuda-spec-field">
+                <label>납품 상품명</label>
+                <input type="text" id="m_prodName" placeholder="예: 서울대학교 과잠 바람막이" value="">
+            </div>
+            <div class="machuda-spec-field">
+                <label>포트폴리오 카테고리</label>
+                <select id="m_category">
+                    <option value="company">회사/근무복</option>
+                    <option value="school">학교/반티</option>
+                    <option value="religion">종교/가족</option>
+                    <option value="club">동호회/굿즈</option>
+                    <option value="store">가게/기타</option>
+                </select>
+            </div>
+            <div class="machuda-spec-field">
+                <label>원단/소재 사양</label>
+                <input type="text" id="m_fabric" placeholder="예: 고밀도 특양면 / 면 100%" value="">
+            </div>
+            <div class="machuda-spec-field">
+                <label>인쇄 사양 설명</label>
+                <input type="text" id="m_printDesc" placeholder="예: 전면: 나염 1도, 소매: 패치 자수" value="">
+            </div>
+            <div class="machuda-spec-field">
+                <label>대표 이미지 주소 (URL)</label>
+                <input type="text" id="m_image" placeholder="예: /web/upload/... 또는 이미지 링크" value="">
+            </div>
+            <div class="machuda-spec-field">
+                <label>전면 인쇄 기법</label>
+                <select id="m_printFront">
+                    <option value="none">없음 (None)</option>
+                    <option value="embroidery">컴퓨터자수 (Embroidery)</option>
+                    <option value="silk">나염/실크스크린 (Silk Screen)</option>
+                    <option value="print">디지털전사/전사 (Digital Print)</option>
+                </select>
+            </div>
+            <div class="machuda-spec-field">
+                <label>후면 인쇄 기법</label>
+                <select id="m_printBack">
+                    <option value="none">없음 (None)</option>
+                    <option value="embroidery">컴퓨터자수 (Embroidery)</option>
+                    <option value="silk">나염/실크스크린 (Silk Screen)</option>
+                    <option value="print">디지털전사/전사 (Digital Print)</option>
+                </select>
+            </div>
+            <div class="machuda-spec-field">
+                <label>소매 인쇄 기법</label>
+                <select id="m_printSleeve">
+                    <option value="none">없음 (None)</option>
+                    <option value="embroidery">컴퓨터자수 (Embroidery)</option>
+                    <option value="silk">나염/실크스크린 (Silk Screen)</option>
+                    <option value="print">디지털전사/전사 (Digital Print)</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="machuda-spec-field full-width" style="margin-top: 15px;">
+            <label>추천 팁 & 원단 특징 설명</label>
+            <textarea id="m_tip" rows="3" placeholder="예: 특양면 원단은 세탁 후 변형이 적어 자주 빨아 입는 반티나 동호회 티셔츠로 적극 추천합니다!"></textarea>
+        </div>
+        <div class="machuda-spec-field full-width" style="margin-top: 15px;">
+            <label>검색용 해시태그 (쉼표로 구분)</label>
+            <input type="text" id="m_tags" placeholder="예: #과잠,#바람막이,#컴퓨터자수,#대학생">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+(function() {
+    // URL에서 board_no 파라미터 값을 파싱합니다.
+    function getBoardNo() {
+        var match = location.search.match(/[?&]board_no=([^&#]*)/i);
+        return match ? match[1] : '';
+    }
+    
+    var currentBoardNo = getBoardNo();
+    console.log("[마추다] 스펙 폼 스크립트 실행됨. 현재 board_no:", currentBoardNo);
+    
+    // board_no가 2(납품사례 게시판)가 아닌 경우 즉시 실행을 차단하고 로그를 남깁니다.
+    if (currentBoardNo !== '2') {
+        console.log("[마추다] 납품사례 게시판(board_no=2)이 아니므로 스크립트를 중단합니다.");
+        return;
+    }
+
+    var retryCount = 0;
+    function initMachudaSpecForm() {
+        // 테이블 요소를 찾기 위해 다양한 선택자를 지원합니다.
+        var boardTable = document.querySelector('.ec-base-table.typeWrite')
+                      || document.querySelector('.ec-base-table')
+                      || document.getElementById('boardWriteForm')
+                      || document.querySelector('form');
+                      
+        var textarea = document.getElementById('content')
+                    || document.querySelector('textarea[name="content"]');
+        
+        var boardCategory = document.getElementById('board_category');
+        
+        if (!boardTable || !textarea) {
+            retryCount++;
+            if (retryCount < 50) { // 최대 5초 동안만 재시도
+                setTimeout(initMachudaSpecForm, 100);
+            } else {
+                console.error("[마추다] 에러: 입력 테이블(.ec-base-table.typeWrite) 또는 본문(#content) 요소를 찾을 수 없습니다.", {
+                    boardTableFound: !!boardTable,
+                    textareaFound: !!textarea
+                });
+            }
+            return;
+        }
+        
+        var wrapper = document.getElementById('machuda-spec-form-wrapper');
+        if (!wrapper || wrapper.getAttribute('data-installed') === 'true') return;
+        
+        console.log("[마추다] 스펙 입력 폼 화면 삽입 완료");
+        
+        // 입력 폼 영역을 쓰기 테이블 바로 밑으로 자연스럽게 삽입합니다.
+        boardTable.parentNode.insertBefore(wrapper, boardTable.nextSibling);
+        wrapper.style.display = 'block';
+        wrapper.setAttribute('data-installed', 'true');
+        
+        // [수정 모드 지원] 기존 글 수정 시 본문에 저장되어 있던 JSON 데이터를 파싱하여 입력 폼에 미리 채워 줍니다.
+        var currentText = textarea.value || '';
+        var match = currentText.match(/<div class="machuda-json-data"[\s\S]*?>([\s\S]*?)<\/div>/i);
+        var hasJsonData = false;
+        
+        if (match) {
+            try {
+                var data = JSON.parse(match[1].trim());
+                if (data.prodId) document.getElementById('m_prodId').value = data.prodId;
+                if (data.prodName) document.getElementById('m_prodName').value = data.prodName;
+                if (data.fabric) document.getElementById('m_fabric').value = data.fabric;
+                if (data.printDesc) document.getElementById('m_printDesc').value = data.printDesc;
+                if (data.printFront) document.getElementById('m_printFront').value = data.printFront;
+                if (data.printBack) document.getElementById('m_printBack').value = data.printBack;
+                if (data.printSleeve) document.getElementById('m_printSleeve').value = data.printSleeve;
+                if (data.tip) document.getElementById('m_tip').value = data.tip;
+                if (data.tags) document.getElementById('m_tags').value = data.tags;
+                if (data.image) document.getElementById('m_image').value = data.image;
+                
+                // 카테고리 복원 및 카페24 원본 카테고리 동기화
+                if (data.category) {
+                    document.getElementById('m_category').value = data.category;
+                    if (boardCategory) {
+                        var map = { 'company': '1', 'school': '2', 'religion': '3', 'club': '4', 'store': '5' };
+                        if (map[data.category]) boardCategory.value = map[data.category];
+                    }
+                }
+                hasJsonData = true;
+            } catch (e) {
+                console.error("기존 포트폴리오 데이터를 읽는 데 실패했습니다:", e);
+            }
+        }
+        
+        // 만약 기존 JSON 스펙 데이터가 없지만, 카페24 카테고리가 이미 선택되어 있다면 가져옵니다 (신규 작성 시 대응)
+        if (!hasJsonData && boardCategory && boardCategory.value) {
+            var bcVal = boardCategory.value;
+            var reverseMap = { '1': 'company', '2': 'school', '3': 'religion', '4': 'club', '5': 'store' };
+            if (reverseMap[bcVal]) document.getElementById('m_category').value = reverseMap[bcVal];
+        }
+        
+        // 입력 폼에 적힌 정보를 JSON으로 정렬하여 실제 Cafe24 저장 영역(textarea)에 실시간 주입하는 함수
+        function syncData() {
+            var mCategory = document.getElementById('m_category').value || 'company';
+            var jsonData = {
+                prodId: document.getElementById('m_prodId').value.trim() || '',
+                prodName: document.getElementById('m_prodName').value.trim() || '',
+                category: mCategory,
+                fabric: document.getElementById('m_fabric').value.trim() || '',
+                printDesc: document.getElementById('m_printDesc').value.trim() || '',
+                printFront: document.getElementById('m_printFront').value || 'none',
+                printBack: document.getElementById('m_printBack').value || 'none',
+                printSleeve: document.getElementById('m_printSleeve').value || 'none',
+                tip: document.getElementById('m_tip').value.trim() || '',
+                tags: document.getElementById('m_tags').value.trim() || '',
+                image: document.getElementById('m_image').value.trim() || ''
+            };
+            
+            // 카페24 기본 카테고리 셀렉트 박스도 우리 폼의 선택과 동기화시킵니다.
+            if (boardCategory) {
+                var map = { 'company': '1', 'school': '2', 'religion': '3', 'club': '4', 'store': '5' };
+                if (map[mCategory]) boardCategory.value = map[mCategory];
+            }
+            
+            var jsonStr = '<div class="machuda-json-data" style="display:none !important;">\n' + JSON.stringify(jsonData, null, 2) + '\n</div>';
+            
+            // 기존 본문에서 이전 데이터 블록을 걷어내고 순수 HTML/글 내용만 남깁니다.
+            var val = textarea.value || '';
+            val = val.replace(/<div class="machuda-json-data"[\s\S]*?<\/div>/gi, '').trim();
+            
+            // textarea 값 실시간 연동
+            textarea.value = jsonStr + '\n' + val;
+            
+            // Froala 에디터가 켜져 있는 상태라면 에디터 내용도 함께 갱신
+            if (typeof FroalaEditor !== 'undefined' && FroalaEditor.INSTANCES && FroalaEditor.INSTANCES.length > 0) {
+                var fInstance = FroalaEditor.INSTANCES[0];
+                var fHtml = fInstance.html.get() || '';
+                fHtml = fHtml.replace(/<div class="machuda-json-data"[\s\S]*?<\/div>/gi, '').trim();
+                fInstance.html.set(jsonStr + '\n' + fHtml);
+            }
+        }
+        
+        // 사용자가 값을 입력하거나 바꿀 때 실시간 동기화 실행
+        var inputs = wrapper.querySelectorAll('input, select, textarea');
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('input', syncData);
+            inputs[i].addEventListener('change', syncData);
+        }
+        
+        // 혹시 모를 누락 방지를 위해 저장 버튼 클릭 및 폼 서브밋 때도 동기화 트리거 작동
+        var submitButtons = document.querySelectorAll('.btnSubmit, .btnSubmitFix, input[type="submit"], button[type="submit"]');
+        for (var j = 0; j < submitButtons.length; j++) {
+            submitButtons[j].addEventListener('click', syncData);
+        }
+        
+        var form = document.getElementById('boardWriteForm');
+        if (form) {
+            form.addEventListener('submit', syncData);
+        }
+    }
+    
+    // 초기 실행
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMachudaSpecForm);
+    } else {
+        initMachudaSpecForm();
+    }
+})();
+</script>
