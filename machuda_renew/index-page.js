@@ -1,217 +1,275 @@
 /**
  * MACHUDA — index-page.js
- * Homepage interactions: slider, nav scroll, FAQ, animations
+ * 리뉴얼 피그마 레이아웃 동적 바인딩 및 인터랙션
+ * (카페24 스마트디자인 연동을 고려해 상단 데이터만 수정하면 모든 메뉴와 배너가 자동으로 바뀝니다.)
  */
 
+// =================================================================
+// ⚙️ [카페24 관리자용 설정 데이터] — 텍스트나 링크만 마음껏 고치세요!
+// =================================================================
+const CONFIG_DATA = {
+  // 1. 상단 블랙 띠배너 설정
+  topBanner: {
+    enabled: true,
+    text: "마추다 회원가입하고 3,000포인트 적립하세요!",
+    link: "#"
+  },
+
+  // 2. 검색창 옆 가격 필터 칩 설정
+  priceFilters: ["전체", "~1만원", "~2만원", "~3만원", "~4만원", "~5만원"],
+
+  // 3. GNB 메뉴 및 링크 설정
+  gnbMenu: {
+    items: [
+      { name: "주문서", link: "#" },
+      { name: "견적문의", link: "order-form.html" },
+      { name: "전체상품", link: "#" },
+      { name: "주문제작", link: "#" },
+      { name: "찜질/마사지/병원", link: "#" },
+      { name: "행사", link: "#" },
+      { name: "근무복", link: "#" },
+      { name: "선거복", link: "#" },
+      { name: "학교", link: "#" },
+      { name: "스포츠", link: "#" }
+    ],
+    quickLinks: [
+      { name: "주문가이드", emoji: "📝", link: "#" },
+      { name: "납품사례", emoji: "🌍", link: "#" },
+      { name: "서류요청", emoji: "📄", link: "#" }
+    ]
+  },
+
+  // 4. 메인 프로모션 카드 슬라이더 설정 (Bento Cards)
+  promoCards: [
+    {
+      title: "급건 전문 & 빠른 제작",
+      sub: "*급건의 경우 상담 진행 해주세요",
+      btnText: "문의하기",
+      link: "order-form.html",
+      theme: "black" // 블랙 테마
+    },
+    {
+      title: "100장이상 나염 소형 무료",
+      sub: "",
+      btnText: "",
+      link: "#",
+      theme: "blue-outline" // 블루 테두리 테마
+    },
+    {
+      title: "찜질복",
+      sub: "",
+      btnText: "",
+      link: "#",
+      theme: "gray" // 연한 그레이 테마
+    },
+    {
+      title: "준비 중인 상품",
+      sub: "",
+      btnText: "",
+      link: "#",
+      theme: "gray-empty" // 비어있는 대기 카드 테마
+    }
+  ],
+
+  // 5. 동그라미 상품 카테고리 8개 설정 (3D 입체 그라데이션)
+  roundCategories: [
+    { name: "후드/맨투맨", emoji: "🧥", link: "#", gradient: "linear-gradient(135deg, #a78bfa, #c084fc)" },
+    { name: "반팔티", emoji: "👕", link: "#", gradient: "linear-gradient(135deg, #60a5fa, #3b82f6)" },
+    { name: "키즈", emoji: "🦖", link: "#", gradient: "linear-gradient(135deg, #34d399, #10b981)" },
+    { name: "빅사이즈", emoji: "🦍", link: "#", gradient: "linear-gradient(135deg, #475569, #334155)" },
+    { name: "스태프", emoji: "🛡️", link: "#", gradient: "linear-gradient(135deg, #f59e0b, #d97706)" },
+    { name: "유니폼", emoji: "⚽", link: "#", gradient: "linear-gradient(135deg, #fb7185, #f43f5e)" },
+    { name: "초등학교 반티", emoji: "🎒", link: "#", gradient: "linear-gradient(135deg, #2dd4bf, #0d9488)" },
+    { name: "가족티", emoji: "👨‍👩‍👧", link: "#", gradient: "linear-gradient(135deg, #fb923c, #f97316)" }
+  ]
+};
+
+// =================================================================
+// 🚀 [HTML 동적 바인딩 및 렌더링 구동 엔진]
+// =================================================================
 (function () {
   'use strict';
 
-  /* ================================================================
-     HERO SLIDER
-     ================================================================ */
-  const slides = document.querySelectorAll('.hero-slide');
-  const dots = document.querySelectorAll('.slide-dot');
-  const prevBtn = document.getElementById('slide-prev');
-  const nextBtn = document.getElementById('slide-next');
-  let currentSlide = 0;
-  let autoTimer = null;
+  document.addEventListener('DOMContentLoaded', () => {
+    initTopBanner();
+    initPriceFilters();
+    initGnbMenu();
+    initPromoSlider();
+    initCircleCategories();
+    setupPromoSliderScroll();
+    setupGlobalInteractions();
+  });
 
-  function goToSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
+  // 1. 탑 블랙 배너 렌더링
+  function initTopBanner() {
+    const holder = document.getElementById('top-banner-holder');
+    if (!holder || !CONFIG_DATA.topBanner.enabled) return;
 
-  function startAutoplay() {
-    autoTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
-  }
-  function stopAutoplay() {
-    clearInterval(autoTimer);
-  }
+    holder.innerHTML = `
+      <div class="top-banner-bar">
+        <a href="${CONFIG_DATA.topBanner.link}" class="top-banner-text">${CONFIG_DATA.topBanner.text}</a>
+        <button class="top-banner-close" aria-label="닫기">✕</button>
+      </div>
+    `;
 
-  if (slides.length > 0) {
-    startAutoplay();
-    prevBtn && prevBtn.addEventListener('click', () => { stopAutoplay(); goToSlide(currentSlide - 1); startAutoplay(); });
-    nextBtn && nextBtn.addEventListener('click', () => { stopAutoplay(); goToSlide(currentSlide + 1); startAutoplay(); });
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => { stopAutoplay(); goToSlide(i); startAutoplay(); });
+    // 닫기 버튼 이벤트
+    holder.querySelector('.top-banner-close').addEventListener('click', () => {
+      holder.style.display = 'none';
     });
   }
 
-  /* ================================================================
-     HEADER SCROLL EFFECT
-     ================================================================ */
-  const header = document.getElementById('site-header');
-  const categoryBar = document.getElementById('category-bar');
+  // 2. 가격 필터 칩 렌더링
+  function initPriceFilters() {
+    const holder = document.getElementById('price-chips-holder');
+    if (!holder) return;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      header && header.classList.add('scrolled');
-    } else {
-      header && header.classList.remove('scrolled');
-    }
-  }, { passive: true });
+    holder.innerHTML = CONFIG_DATA.priceFilters.map((filter, index) => `
+      <button class="price-chip ${index === 0 ? 'active' : ''}" data-filter="${filter}">${filter}</button>
+    `).join('');
 
-  /* ================================================================
-     SEARCH TOGGLE
-     ================================================================ */
-  const searchBtn = document.getElementById('btn-search');
-  const searchDropdown = document.getElementById('search-dropdown');
-  const searchField = document.getElementById('search-field');
-
-  searchBtn && searchBtn.addEventListener('click', () => {
-    const isOpen = searchDropdown.classList.toggle('open');
-    searchDropdown.setAttribute('aria-hidden', !isOpen);
-    if (isOpen) {
-      setTimeout(() => searchField && searchField.focus(), 300);
-    }
-  });
-
-  // Close search on outside click
-  document.addEventListener('click', (e) => {
-    if (searchDropdown && !searchDropdown.contains(e.target) && e.target !== searchBtn) {
-      searchDropdown.classList.remove('open');
-      searchDropdown.setAttribute('aria-hidden', 'true');
-    }
-  });
-
-  /* ================================================================
-     MOBILE HAMBURGER
-     ================================================================ */
-  const hamburger = document.getElementById('hamburger');
-  const gnb = document.getElementById('gnb-nav');
-
-  hamburger && hamburger.addEventListener('click', () => {
-    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-    hamburger.setAttribute('aria-expanded', !expanded);
-    if (gnb) {
-      gnb.style.display = expanded ? 'none' : 'flex';
-      gnb.style.flexDirection = 'column';
-      gnb.style.position = 'fixed';
-      gnb.style.top = '64px';
-      gnb.style.left = '0';
-      gnb.style.right = '0';
-      gnb.style.bottom = '0';
-      gnb.style.background = '#fff';
-      gnb.style.padding = '20px';
-      gnb.style.zIndex = '800';
-      gnb.style.overflowY = 'auto';
-      gnb.style.borderTop = '1px solid #e2e8f0';
-      gnb.style.gap = '4px';
-    }
-  });
-
-  /* ================================================================
-     CATEGORY BAR — Active chip on click
-     ================================================================ */
-  const catChips = document.querySelectorAll('.cat-chip');
-  catChips.forEach(chip => {
-    chip.addEventListener('click', (e) => {
-      catChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-    });
-  });
-
-  /* ================================================================
-     FAQ ACCORDION
-     ================================================================ */
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach((item) => {
-    const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-    question && question.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      // Close all
-      faqItems.forEach(fi => {
-        fi.classList.remove('open');
-        const fa = fi.querySelector('.faq-answer');
-        if (fa) fa.classList.remove('open');
-        const fq = fi.querySelector('.faq-question');
-        if (fq) fq.setAttribute('aria-expanded', 'false');
+    // 이벤트 바인딩
+    holder.querySelectorAll('.price-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        holder.querySelectorAll('.price-chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
       });
-      // Open clicked if was closed
-      if (!isOpen) {
-        item.classList.add('open');
-        if (answer) answer.classList.add('open');
-        question.setAttribute('aria-expanded', 'true');
-      }
     });
-  });
+  }
 
-  /* ================================================================
-     SCROLL ANIMATIONS (IntersectionObserver)
-     ================================================================ */
-  const processSteps = document.querySelectorAll('.process-step');
-  const stepObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        stepObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  processSteps.forEach(step => stepObserver.observe(step));
+  // 3. GNB 메뉴 렌더링
+  function initGnbMenu() {
+    const menuHolder = document.getElementById('gnb-menu-holder');
+    const quickHolder = document.getElementById('gnb-quick-holder');
 
-  // Generic fade-in-up for sections
-  const fadeTargets = document.querySelectorAll(
-    '.section-head, .product-card, .case-card, .print-card, .review-card, .cat-bento-card, .trust-item, .faq-item'
-  );
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+    if (menuHolder) {
+      menuHolder.innerHTML = CONFIG_DATA.gnbMenu.items.map(item => `
+        <a href="${item.link}" class="gnb-new-link">${item.name}</a>
+      `).join('');
+    }
 
-  // Add fade-in-up class then observe
-  fadeTargets.forEach((el, i) => {
-    el.classList.add('fade-in-up');
-    el.style.transitionDelay = `${(i % 6) * 0.07}s`;
-    fadeObserver.observe(el);
-  });
-
-  /* ================================================================
-     PRODUCT WISH BUTTON (Toggle)
-     ================================================================ */
-  const wishBtns = document.querySelectorAll('.product-wish');
-  wishBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isWished = btn.textContent === '♥';
-      btn.textContent = isWished ? '♡' : '♥';
-      btn.style.color = isWished ? '' : 'var(--col-red)';
-    });
-  });
-
-  /* ================================================================
-     SMOOTH SCROLL for anchor links
-     ================================================================ */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-
-
-  /* ================================================================
-     HEADER: Update category bar top offset on window resize
-     ================================================================ */
-  function updateCategoryBarTop() {
-    if (categoryBar && header) {
-      categoryBar.style.top = header.offsetHeight + 'px';
+    if (quickHolder) {
+      quickHolder.innerHTML = CONFIG_DATA.gnbMenu.quickLinks.map(link => `
+        <a href="${link.link}" class="gnb-quick-item">
+          <span class="quick-emoji">${link.emoji}</span> ${link.name}
+        </a>
+      `).join('');
     }
   }
-  window.addEventListener('resize', updateCategoryBarTop);
-  updateCategoryBarTop();
 
-  console.log('[MACHUDA] index-page.js loaded ✓');
+  // 4. 메인 프로모션 카드 슬라이더 렌더링
+  function initPromoSlider() {
+    const track = document.getElementById('promo-carousel-track');
+    if (!track) return;
+
+    track.innerHTML = CONFIG_DATA.promoCards.map(card => {
+      let cardContent = '';
+      if (card.theme === 'black') {
+        cardContent = `
+          <div class="promo-card-content">
+            <h3 class="promo-card-title">${card.title}</h3>
+            <p class="promo-card-sub">${card.sub}</p>
+            <a href="${card.link}" class="promo-card-btn">${card.btnText}</a>
+          </div>
+        `;
+      } else if (card.theme === 'blue-outline') {
+        cardContent = `
+          <div class="promo-card-content">
+            <h3 class="promo-card-title text-blue">${card.title}</h3>
+          </div>
+        `;
+      } else {
+        cardContent = `
+          <div class="promo-card-content">
+            <h3 class="promo-card-title">${card.title}</h3>
+          </div>
+        `;
+      }
+
+      return `
+        <a href="${card.link}" class="promo-carousel-card card-theme-${card.theme}">
+          ${cardContent}
+        </a>
+      `;
+    }).join('');
+  }
+
+  // 5. 동그라미 상품 카테고리 렌더링
+  function initCircleCategories() {
+    const holder = document.getElementById('circle-categories-holder');
+    if (!holder) return;
+
+    holder.innerHTML = CONFIG_DATA.roundCategories.map(cat => `
+      <a href="${cat.link}" class="circle-cat-item">
+        <div class="circle-cat-icon-frame" style="background: ${cat.gradient};">
+          <span class="circle-cat-emoji">${cat.emoji}</span>
+        </div>
+        <span class="circle-cat-name">${cat.name}</span>
+      </a>
+    `).join('');
+  }
+
+  // 6. 메인 프로모션 카드 슬라이더 가로 스크롤 제어
+  function setupPromoSliderScroll() {
+    const trackWrapper = document.querySelector('.promo-carousel-track-wrapper');
+    const prevBtn = document.getElementById('promo-prev-btn');
+    const nextBtn = document.getElementById('promo-next-btn');
+
+    if (!trackWrapper || !prevBtn || !nextBtn) return;
+
+    const scrollAmount = 360; // 카드 너비 + 마진 크기만큼 스크롤
+
+    prevBtn.addEventListener('click', () => {
+      trackWrapper.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      trackWrapper.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // FAQ 등 글로벌 인터랙션 재설정
+  function setupGlobalInteractions() {
+    // FAQ 아코디언 바인딩
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      question && question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        faqItems.forEach(fi => {
+          fi.classList.remove('open');
+          const fa = fi.querySelector('.faq-answer');
+          if (fa) fa.classList.remove('open');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          if (answer) answer.classList.add('open');
+        }
+      });
+    });
+
+    // 스크롤 시 페이드인 애니메이션
+    const fadeTargets = document.querySelectorAll(
+      '.case-card, .review-card, .faq-item, .trust-item'
+    );
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeTargets.forEach(el => {
+      el.classList.add('fade-in-up');
+      fadeObserver.observe(el);
+    });
+  }
 })();
