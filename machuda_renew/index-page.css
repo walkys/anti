@@ -2111,28 +2111,155 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* 모바일 반응형 처리 */
 @media (max-width: 768px) {
+  /* 1. 상단 띠배너 모바일 최적화 */
+  .top-banner-bar {
+    font-size: 11px;
+    height: 36px;
+    padding: 0 30px;
+  }
+  .top-banner-close {
+    right: 10px;
+    font-size: 12px;
+  }
+
+  /* 2. 헤더 탑 로고 및 유틸 가로 정렬 고수 */
+  .header-top-row {
+    padding: 0 16px;
+  }
+  .site-header-new .site-logo {
+    font-size: 20px;
+  }
+  .header-right-icons {
+    gap: 15px;
+  }
+
+  /* 3. 검색 및 가격 필터 세로 정렬 및 터치 스크롤 */
   .header-search-row {
     flex-direction: column;
     align-items: stretch;
+    margin-top: 10px;
+    padding: 0 16px;
+    gap: 10px;
+  }
+  .search-bar-container {
+    padding: 10px 16px;
+  }
+  .search-bar-input {
+    font-size: 14px;
   }
   .price-chips-holder {
     overflow-x: auto;
+    white-space: nowrap;
     padding-bottom: 5px;
+    margin-left: 0;
+    gap: 6px;
+    scrollbar-width: none;
   }
+  .price-chips-holder::-webkit-scrollbar {
+    display: none;
+  }
+  .price-chip {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  /* 4. GNB 메뉴 모바일 터치 스크롤화 (줄바꿈 방지) */
   .gnb-menu-row {
     flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
+    gap: 12px;
+    align-items: stretch;
+    padding: 12px 16px 0 16px;
+    margin-top: 10px;
+  }
+  .gnb-new-nav {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    display: flex;
+    gap: 16px;
+  }
+  .gnb-new-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .gnb-new-nav ul {
+    gap: 16px !important;
+  }
+  .gnb-new-link {
+    font-size: 13.5px;
+    flex-shrink: 0;
   }
   .gnb-quick-links {
     width: 100%;
     justify-content: space-between;
+    gap: 8px;
+  }
+  .gnb-quick-item {
+    font-size: 11px;
+    padding: 5px 10px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* 5. 프로모션 카드 슬라이더 모바일 축소 및 스크롤 */
+  .promo-carousel-section {
+    padding: 20px 0;
+  }
+  .promo-carousel-wrapper {
+    padding: 0 16px;
+  }
+  .promo-carousel-card {
+    width: 290px;
+    height: 180px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .card-theme-black .promo-card-title {
+    font-size: 18px;
+  }
+  .card-theme-black .promo-card-btn {
+    padding: 6px 14px;
+    font-size: 11px;
+    margin-top: 10px;
+  }
+  .card-theme-blue-outline .promo-card-title,
+  .card-theme-gray .promo-card-title {
+    font-size: 18px;
+  }
+
+  /* 6. 동그라미 카테고리 모바일 크기 축소 및 스냅 터치 스크롤 */
+  .circle-categories-section {
+    padding: 25px 0;
+  }
+  .circle-categories-container {
+    padding: 0 16px;
+  }
+  .circle-categories-title {
+    font-size: 16px;
+    margin-bottom: 16px;
   }
   .circle-categories-list {
     justify-content: flex-start;
+    gap: 10px;
+    padding-bottom: 8px;
   }
-  .slider-nav-btn {
-    display: none; /* 모바일은 스와이프로 대체 */
+  .circle-categories-list ul {
+    justify-content: flex-start !important;
+    gap: 10px !important;
+  }
+  .circle-cat-item {
+    width: 70px;
+  }
+  .circle-cat-icon-frame {
+    width: 58px;
+    height: 58px;
+  }
+  .circle-cat-emoji {
+    font-size: 24px;
+  }
+  .circle-cat-name {
+    font-size: 11.5px;
   }
 }
 
