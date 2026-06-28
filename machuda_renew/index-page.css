@@ -2136,3 +2136,24 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
 }
 
+/* ── [CAFE24 SPECIFIC LIST TAG RESETS] ── */
+.gnb-new-nav ul,
+.promo-carousel-track ul,
+.circle-categories-list ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gnb-new-nav ul {
+  gap: 24px;
+}
+.promo-carousel-track ul {
+  gap: 20px;
+}
+.circle-categories-list ul {
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+

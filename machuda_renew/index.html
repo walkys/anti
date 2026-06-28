@@ -18,7 +18,9 @@
 <body class="light-page">
 
   <!-- ===== TOP BANNER ===== -->
-  <div id="top-banner-holder"></div>
+  <div id="top-banner-holder">
+    <!--@import(/layout/basic/popup.html)-->
+  </div>
 
   <!-- ===== HEADER ===== -->
   <header class="site-header-new">
@@ -30,13 +32,13 @@
       
       <!-- Right Icons -->
       <div class="header-right-icons">
-        <a href="#" class="icon-link" aria-label="장바구니">
+        <a href="/order/basket.html" class="icon-link" aria-label="장바구니">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
         </a>
-        <a href="#" class="icon-link" aria-label="찜한상품">
+        <a href="/myshop/wish_list.html" class="icon-link" aria-label="찜한상품">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         </a>
-        <a href="#" class="icon-link" aria-label="마이페이지">
+        <a href="/myshop/index.html" class="icon-link" aria-label="마이페이지">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </a>
       </div>
@@ -44,11 +46,15 @@
 
     <!-- Search Bar & Price badges -->
     <div class="header-search-row">
-      <div class="search-bar-container">
+      <div class="search-bar-container" module="Layout_SearchHeader">
+        <!--
+            $product_page = /product/detail.html
+            $category_page = /product/list.html
+        -->
         <span class="search-icon-inside">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </span>
-        <input type="text" class="search-bar-input" placeholder="제품을 찾아주세요" id="search-input-main">
+        <input type="text" class="search-bar-input" placeholder="제품을 찾아주세요" id="search-input-main" name="keyword">
       </div>
       <!-- Price Filter Chips Holder -->
       <div class="price-chips-holder" id="price-chips-holder"></div>
@@ -56,7 +62,12 @@
 
     <!-- GNB Menu & Quick links -->
     <div class="gnb-menu-row">
-      <nav class="gnb-new-nav" id="gnb-menu-holder"></nav>
+      <nav class="gnb-new-nav" id="gnb-menu-holder" module="layout_category">
+        <!--
+            $category_list = /product/list.html
+        -->
+        <a href="{$link_product_list}" class="gnb-new-link">{$category_name}</a>
+      </nav>
       <div class="gnb-quick-links" id="gnb-quick-holder"></div>
     </div>
   </header>
@@ -66,7 +77,19 @@
     <div class="promo-carousel-wrapper">
       <button class="slider-nav-btn prev-btn" id="promo-prev-btn" aria-label="이전 배너">‹</button>
       <div class="promo-carousel-track-wrapper">
-        <div class="promo-carousel-track" id="promo-carousel-track"></div>
+        <div class="promo-carousel-track" id="promo-carousel-track" module="layout_multibanner">
+          <!--
+              $banner_action = link
+          -->
+          <a href="{$banner_link}" class="promo-carousel-card card-theme-black xans-record-">
+            <div class="promo-card-content">
+              <h3 class="promo-card-title">{$banner_title}</h3>
+              <p class="promo-card-sub">{$banner_subtitle}</p>
+              <span class="promo-card-btn">{$banner_btn_text}</span>
+            </div>
+            <img src="{$banner_image}" alt="{$banner_alt}" class="promo-banner-img" onerror="this.style.display='none'">
+          </a>
+        </div>
       </div>
       <button class="slider-nav-btn next-btn" id="promo-next-btn" aria-label="다음 배너">›</button>
     </div>
@@ -76,7 +99,18 @@
   <section class="circle-categories-section">
     <div class="circle-categories-container">
       <h2 class="circle-categories-title">여러상품이 준비되어 있어요</h2>
-      <div class="circle-categories-list" id="circle-categories-holder"></div>
+      <div class="circle-categories-list" id="circle-categories-holder" module="layout_category">
+        <!--
+            $category_list = /product/list.html
+        -->
+        <a href="{$link_product_list}" class="circle-cat-item xans-record-">
+          <div class="circle-cat-icon-frame">
+            <img src="{$category_image}" alt="{$category_name}" class="circle-cat-img-source" onerror="this.style.display='none'">
+            <span class="circle-cat-fallback-emoji">🛍️</span>
+          </div>
+          <span class="circle-cat-name">{$category_name}</span>
+        </a>
+      </div>
     </div>
   </section>
 

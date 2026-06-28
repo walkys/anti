@@ -1,24 +1,19 @@
 /**
  * MACHUDA — index-page.js
  * 리뉴얼 피그마 레이아웃 동적 바인딩 및 인터랙션
- * (카페24 스마트디자인 연동을 고려해 상단 데이터만 수정하면 모든 메뉴와 배너가 자동으로 바뀝니다.)
+ * (카페24 스마트디자인 치환코드 자동 감지 하이브리드 엔진 내장)
  */
 
 // =================================================================
-// ⚙️ [카페24 관리자용 설정 데이터] — 텍스트나 링크만 마음껏 고치세요!
+// ⚙️ [로컬 테스트용 모의 데이터] — 카페24 어드민에 배너/카테고리가 없을 때 적용됩니다.
 // =================================================================
 const CONFIG_DATA = {
-  // 1. 상단 블랙 띠배너 설정
   topBanner: {
     enabled: true,
     text: "마추다 회원가입하고 3,000포인트 적립하세요!",
     link: "#"
   },
-
-  // 2. 검색창 옆 가격 필터 칩 설정
   priceFilters: ["전체", "~1만원", "~2만원", "~3만원", "~4만원", "~5만원"],
-
-  // 3. GNB 메뉴 및 링크 설정
   gnbMenu: {
     items: [
       { name: "주문서", link: "#" },
@@ -38,40 +33,36 @@ const CONFIG_DATA = {
       { name: "서류요청", emoji: "📄", link: "#" }
     ]
   },
-
-  // 4. 메인 프로모션 카드 슬라이더 설정 (Bento Cards)
   promoCards: [
     {
       title: "급건 전문 & 빠른 제작",
       sub: "*급건의 경우 상담 진행 해주세요",
       btnText: "문의하기",
       link: "order-form.html",
-      theme: "black" // 블랙 테마
+      theme: "black"
     },
     {
       title: "100장이상 나염 소형 무료",
       sub: "",
       btnText: "",
       link: "#",
-      theme: "blue-outline" // 블루 테두리 테마
+      theme: "blue-outline"
     },
     {
       title: "찜질복",
       sub: "",
       btnText: "",
       link: "#",
-      theme: "gray" // 연한 그레이 테마
+      theme: "gray"
     },
     {
       title: "준비 중인 상품",
       sub: "",
       btnText: "",
       link: "#",
-      theme: "gray-empty" // 비어있는 대기 카드 테마
+      theme: "gray-empty"
     }
   ],
-
-  // 5. 동그라미 상품 카테고리 8개 설정 (3D 입체 그라데이션)
   roundCategories: [
     { name: "후드/맨투맨", emoji: "🧥", link: "#", gradient: "linear-gradient(135deg, #a78bfa, #c084fc)" },
     { name: "반팔티", emoji: "👕", link: "#", gradient: "linear-gradient(135deg, #60a5fa, #3b82f6)" },
@@ -85,40 +76,61 @@ const CONFIG_DATA = {
 };
 
 // =================================================================
-// 🚀 [HTML 동적 바인딩 및 렌더링 구동 엔진]
+// 🚀 [하이브리드 구동 엔진]
 // =================================================================
 (function () {
   'use strict';
 
   document.addEventListener('DOMContentLoaded', () => {
-    initTopBanner();
+    // 1. 카페24 치환코드가 정상 파싱되었는지 체크
+    const isLocalMode = checkIsLocalMode();
+
+    initTopBanner(isLocalMode);
     initPriceFilters();
-    initGnbMenu();
-    initPromoSlider();
-    initCircleCategories();
+    initGnbMenu(isLocalMode);
+    initPromoSlider(isLocalMode);
+    initCircleCategories(isLocalMode);
+
     setupPromoSliderScroll();
     setupGlobalInteractions();
   });
 
-  // 1. 탑 블랙 배너 렌더링
-  function initTopBanner() {
-    const holder = document.getElementById('top-banner-holder');
-    if (!holder || !CONFIG_DATA.topBanner.enabled) return;
-
-    holder.innerHTML = `
-      <div class="top-banner-bar">
-        <a href="${CONFIG_DATA.topBanner.link}" class="top-banner-text">${CONFIG_DATA.topBanner.text}</a>
-        <button class="top-banner-close" aria-label="닫기">✕</button>
-      </div>
-    `;
-
-    // 닫기 버튼 이벤트
-    holder.querySelector('.top-banner-close').addEventListener('click', () => {
-      holder.style.display = 'none';
-    });
+  // 카페24 서버 파싱 실패(로컬 파일 열기 상태) 감지 함수
+  function checkIsLocalMode() {
+    const checkEl = document.getElementById('gnb-menu-holder');
+    if (!checkEl) return true;
+    // HTML 소스 내에 카페24용 중괄호 변수 {$category_name} 등이 그대로 들어있다면 로컬 모드로 작동시킵니다.
+    return checkEl.innerHTML.includes('{$') || checkEl.innerHTML.trim() === '';
   }
 
-  // 2. 가격 필터 칩 렌더링
+  // 1. 탑 블랙 배너 렌더링
+  function initTopBanner(isLocalMode) {
+    const holder = document.getElementById('top-banner-holder');
+    if (!holder) return;
+
+    // 로컬 모드인 경우에만 목업 배너 생성
+    if (isLocalMode) {
+      holder.innerHTML = `
+        <div class="top-banner-bar">
+          <a href="${CONFIG_DATA.topBanner.link}" class="top-banner-text">${CONFIG_DATA.topBanner.text}</a>
+          <button class="top-banner-close" aria-label="닫기">✕</button>
+        </div>
+      `;
+      holder.querySelector('.top-banner-close').addEventListener('click', () => {
+        holder.style.display = 'none';
+      });
+    } else {
+      // 카페24 라이브 환경인 경우, 팝업이 로드된 후 닫기 바인딩
+      const closeBtn = holder.querySelector('.top-banner-close') || holder.querySelector('.close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          holder.style.display = 'none';
+        });
+      }
+    }
+  }
+
+  // 2. 가격 필터 칩 렌더링 (카페24 무관 로컬 UI)
   function initPriceFilters() {
     const holder = document.getElementById('price-chips-holder');
     if (!holder) return;
@@ -127,26 +139,28 @@ const CONFIG_DATA = {
       <button class="price-chip ${index === 0 ? 'active' : ''}" data-filter="${filter}">${filter}</button>
     `).join('');
 
-    // 이벤트 바인딩
     holder.querySelectorAll('.price-chip').forEach(btn => {
       btn.addEventListener('click', () => {
         holder.querySelectorAll('.price-chip').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        console.log(`[가격 필터]: ${btn.dataset.filter}`);
       });
     });
   }
 
   // 3. GNB 메뉴 렌더링
-  function initGnbMenu() {
+  function initGnbMenu(isLocalMode) {
     const menuHolder = document.getElementById('gnb-menu-holder');
     const quickHolder = document.getElementById('gnb-quick-holder');
 
-    if (menuHolder) {
+    // 로컬 환경일 때만 목업 카테고리를 그려줍니다.
+    if (isLocalMode && menuHolder) {
       menuHolder.innerHTML = CONFIG_DATA.gnbMenu.items.map(item => `
         <a href="${item.link}" class="gnb-new-link">${item.name}</a>
       `).join('');
     }
 
+    // 퀵 링크 렌더링
     if (quickHolder) {
       quickHolder.innerHTML = CONFIG_DATA.gnbMenu.quickLinks.map(link => `
         <a href="${link.link}" class="gnb-quick-item">
@@ -157,55 +171,92 @@ const CONFIG_DATA = {
   }
 
   // 4. 메인 프로모션 카드 슬라이더 렌더링
-  function initPromoSlider() {
+  function initPromoSlider(isLocalMode) {
     const track = document.getElementById('promo-carousel-track');
     if (!track) return;
 
-    track.innerHTML = CONFIG_DATA.promoCards.map(card => {
-      let cardContent = '';
-      if (card.theme === 'black') {
-        cardContent = `
-          <div class="promo-card-content">
-            <h3 class="promo-card-title">${card.title}</h3>
-            <p class="promo-card-sub">${card.sub}</p>
-            <a href="${card.link}" class="promo-card-btn">${card.btnText}</a>
-          </div>
-        `;
-      } else if (card.theme === 'blue-outline') {
-        cardContent = `
-          <div class="promo-card-content">
-            <h3 class="promo-card-title text-blue">${card.title}</h3>
-          </div>
-        `;
-      } else {
-        cardContent = `
-          <div class="promo-card-content">
-            <h3 class="promo-card-title">${card.title}</h3>
-          </div>
-        `;
-      }
+    // 로컬 환경일 때만 목업 프로모션 카드를 그려줍니다.
+    if (isLocalMode) {
+      track.innerHTML = CONFIG_DATA.promoCards.map(card => {
+        let cardContent = '';
+        if (card.theme === 'black') {
+          cardContent = `
+            <div class="promo-card-content">
+              <h3 class="promo-card-title">${card.title}</h3>
+              <p class="promo-card-sub">${card.sub}</p>
+              <span class="promo-card-btn">${card.btnText}</span>
+            </div>
+          `;
+        } else if (card.theme === 'blue-outline') {
+          cardContent = `
+            <div class="promo-card-content">
+              <h3 class="promo-card-title text-blue">${card.title}</h3>
+            </div>
+          `;
+        } else {
+          cardContent = `
+            <div class="promo-card-content">
+              <h3 class="promo-card-title">${card.title}</h3>
+            </div>
+          `;
+        }
 
-      return `
-        <a href="${card.link}" class="promo-carousel-card card-theme-${card.theme}">
-          ${cardContent}
-        </a>
-      `;
-    }).join('');
+        return `
+          <a href="${card.link}" class="promo-carousel-card card-theme-${card.theme}">
+            ${cardContent}
+          </a>
+        `;
+      }).join('');
+    } else {
+      // 카페24 라이브 환경: 어드민 등록된 배너 리스트들에 CSS 클래스와 템플릿 테마 클래스를 순차 적용해 줍니다.
+      const cards = track.querySelectorAll('.promo-carousel-card');
+      const themes = ['black', 'blue-outline', 'gray', 'gray-empty'];
+      
+      cards.forEach((card, index) => {
+        const theme = themes[index % themes.length];
+        card.classList.add(`card-theme-${theme}`);
+      });
+    }
   }
 
   // 5. 동그라미 상품 카테고리 렌더링
-  function initCircleCategories() {
+  function initCircleCategories(isLocalMode) {
     const holder = document.getElementById('circle-categories-holder');
     if (!holder) return;
 
-    holder.innerHTML = CONFIG_DATA.roundCategories.map(cat => `
-      <a href="${cat.link}" class="circle-cat-item">
-        <div class="circle-cat-icon-frame" style="background: ${cat.gradient};">
-          <span class="circle-cat-emoji">${cat.emoji}</span>
-        </div>
-        <span class="circle-cat-name">${cat.name}</span>
-      </a>
-    `).join('');
+    // 로컬 환경일 때만 목업 그라데이션 원형 카테고리를 그려줍니다.
+    if (isLocalMode) {
+      holder.innerHTML = CONFIG_DATA.roundCategories.map(cat => `
+        <a href="${cat.link}" class="circle-cat-item">
+          <div class="circle-cat-icon-frame" style="background: ${cat.gradient};">
+            <span class="circle-cat-emoji">${cat.emoji}</span>
+          </div>
+          <span class="circle-cat-name">${cat.name}</span>
+        </a>
+      `).join('');
+    } else {
+      // 카페24 라이브 환경: 실제 카테고리 루프 엘리먼트들에 입체 그라데이션 배경을 무작위 혹은 순차적으로 입혀줍니다.
+      const items = holder.querySelectorAll('.circle-cat-item');
+      items.forEach((item, index) => {
+        const catData = CONFIG_DATA.roundCategories[index % CONFIG_DATA.roundCategories.length];
+        const frame = item.querySelector('.circle-cat-icon-frame');
+        if (frame) {
+          frame.style.background = catData.gradient;
+          // 어드민 등록 이미지가 없으면 텍스트(이모지)로 대체
+          const img = frame.querySelector('.circle-cat-img-source');
+          const fallback = frame.querySelector('.circle-cat-fallback-emoji');
+          if (img && (!img.getAttribute('src') || img.getAttribute('src').includes('{$'))) {
+            img.style.display = 'none';
+            if (fallback) {
+              fallback.textContent = catData.emoji;
+              fallback.style.display = 'inline';
+            }
+          } else if (fallback) {
+            fallback.style.display = 'none';
+          }
+        }
+      });
+    }
   }
 
   // 6. 메인 프로모션 카드 슬라이더 가로 스크롤 제어
@@ -216,7 +267,7 @@ const CONFIG_DATA = {
 
     if (!trackWrapper || !prevBtn || !nextBtn) return;
 
-    const scrollAmount = 360; // 카드 너비 + 마진 크기만큼 스크롤
+    const scrollAmount = 380; // 카드 너비 + 마진 크기만큼 스크롤
 
     prevBtn.addEventListener('click', () => {
       trackWrapper.scrollBy({
@@ -235,7 +286,6 @@ const CONFIG_DATA = {
 
   // FAQ 등 글로벌 인터랙션 재설정
   function setupGlobalInteractions() {
-    // FAQ 아코디언 바인딩
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach((item) => {
       const question = item.querySelector('.faq-question');
@@ -254,7 +304,6 @@ const CONFIG_DATA = {
       });
     });
 
-    // 스크롤 시 페이드인 애니메이션
     const fadeTargets = document.querySelectorAll(
       '.case-card, .review-card, .faq-item, .trust-item'
     );
