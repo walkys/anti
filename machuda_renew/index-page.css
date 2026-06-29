@@ -2302,24 +2302,67 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
 }
 
-/* ── [CAFE24 SPECIFIC LIST TAG RESETS] ── */
+/* ── [CAFE24 SPECIFIC LIST TAG RESETS & FORCE ENFORCEMENT] ── */
 .gnb-new-nav ul,
 .promo-carousel-track ul,
 .circle-categories-list ul {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  display: flex !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
 }
 .gnb-new-nav ul {
-  gap: 24px;
+  gap: 24px !important;
 }
 .promo-carousel-track ul {
-  gap: 20px;
+  gap: 20px !important;
 }
 .circle-categories-list ul {
-  justify-content: space-between;
-  width: 100%;
-  gap: 16px;
+  justify-content: space-between !important;
+  width: 100% !important;
+  gap: 16px !important;
+}
+
+/* 카페24 엔진에서 렌더링하는 li 목록 요소 무조건 리셋 */
+.gnb-new-nav li,
+.promo-carousel-track li,
+.circle-categories-list li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 모바일 768px 이하 스페셜 리스트 룰 강제 적용 */
+@media (max-width: 768px) {
+  .circle-categories-list,
+  .circle-categories-list ul {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px 8px !important;
+    width: 100% !important;
+  }
+  .circle-categories-list li {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .circle-cat-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  
+  .gnb-new-nav,
+  .gnb-new-nav ul {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+  .gnb-new-nav li {
+    display: inline-block !important;
+    flex-shrink: 0 !important;
+  }
 }
 
