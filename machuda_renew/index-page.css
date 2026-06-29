@@ -2496,3 +2496,926 @@
   display: none !important;
 }
 
+/* 최상단 쿠폰 배너 디자인 보정: 배경 검정 + 높이 단축 */
+.main_top_banner {
+  background-color: #000000 !important; /* 배경 검정 */
+  min-height: auto !important;
+  padding: 8px 0 !important; /* 위아래 패딩 줄여 높이 단축 */
+}
+
+/* 내부 텍스트 링크 색상 흰색으로 보정 */
+.main_top_banner .top_banner_text a,
+.main_top_banner .top_banner_text {
+  color: #ffffff !important; /* 텍스트 흰색 */
+  font-size: 13px !important; /* 텍스트 크기 가독성 있게 조정 */
+  font-weight: 500 !important;
+}
+
+/* 오늘 하루 보지 않기 등 컨트롤 영역 보정 */
+.main_top_banner .top_banner_close,
+.main_top_banner .top_banner_close label {
+  color: #aaaaaa !important; /* 어두운 회색 */
+  font-size: 11px !important;
+}
+
+.main_top_banner .top_banner_close i {
+  color: #ffffff !important;
+}
+
+/* ============================================================
+   CAFE24 HIGH-SPECIFICITY LAYOUT OVERRIDES
+   #contents 접두사로 카페24 기본 CSS보다 높은 우선순위 확보
+   ============================================================ */
+
+/* ── 프로모 카드 추가 테마 ── */
+#contents .promo-carousel-card.card-theme-yellow {
+  background: linear-gradient(135deg, #FFD800 0%, #FFC000 100%) !important;
+  color: #111 !important;
+}
+#contents .card-theme-yellow .promo-card-title {
+  color: #111 !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+}
+#contents .card-theme-yellow .promo-card-sub {
+  color: rgba(0,0,0,0.6) !important;
+}
+#contents .card-theme-yellow .promo-card-btn {
+  background: #111 !important;
+  color: #FFD800 !important;
+}
+#contents .promo-carousel-card.card-theme-dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+  color: #fff !important;
+}
+#contents .card-theme-dark .promo-card-title {
+  color: #fff !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+}
+#contents .card-theme-dark .promo-card-sub {
+  color: #aaa !important;
+}
+#contents .card-theme-dark .promo-card-btn {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+/* ── 동그라미 카테고리: div 기반 Layout_category 대응 ── */
+/* 카페24 엔진이 div.circle-categories-list 를 카테고리 수만큼 복제하므로,
+   부모 컨테이너(.circle-categories-container)를 flex wrap으로 만들어
+   복제된 div들이 가로로 나열되게 합니다 */
+#contents .circle-categories-container {
+  max-width: 1260px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0 !important;
+}
+#contents .circle-categories-title {
+  width: 100% !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  margin-bottom: 24px !important;
+}
+/* 복제된 각 div.circle-categories-list 는 자기 안에 circle-cat-item 1개만 가짐 */
+#contents .circle-categories-list {
+  display: inline-flex !important;
+  flex-shrink: 0 !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+}
+#contents .circle-cat-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 80px !important;
+}
+
+/* ── 프로모 카드 캐러셀 ── */
+#contents .promo-carousel-section {
+  padding: 30px 0 !important;
+  background: #ffffff !important;
+}
+#contents .promo-carousel-wrapper {
+  max-width: 1260px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+#contents .promo-carousel-track-wrapper {
+  width: 100% !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  scroll-behavior: smooth !important;
+}
+#contents .promo-carousel-track {
+  display: flex !important;
+  gap: 20px !important;
+  width: max-content !important;
+  padding: 10px 0 !important;
+}
+#contents .promo-carousel-card {
+  width: 380px !important;
+  min-height: 220px !important;
+  border-radius: 24px !important;
+  padding: 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+#contents .promo-carousel-card.card-theme-black {
+  background: #111111 !important;
+  color: #ffffff !important;
+}
+#contents .promo-card-title {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  color: inherit !important;
+}
+#contents .promo-card-sub {
+  font-size: 13px !important;
+  color: #aaaaaa !important;
+  margin-top: 5px !important;
+}
+#contents .promo-card-btn {
+  display: inline-block !important;
+  align-self: flex-start !important;
+  background: #ffffff !important;
+  color: #111111 !important;
+  padding: 8px 18px !important;
+  border-radius: 20px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-top: 15px !important;
+}
+#contents .promo-banner-img {
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  height: 100% !important;
+  width: 50% !important;
+  object-fit: cover !important;
+  opacity: 0.3 !important;
+}
+#contents .slider-nav-btn {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: #f3f3f3 !important;
+  color: #111 !important;
+  font-size: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+}
+#contents .slider-nav-btn:hover {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+/* ── 동그라미 카테고리 ── */
+#contents .circle-categories-section {
+  padding: 40px 0 !important;
+  background: #ffffff !important;
+}
+#contents .circle-categories-container {
+  max-width: 1260px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+}
+#contents .circle-categories-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  margin-bottom: 24px !important;
+}
+#contents .circle-categories-list {
+  display: flex !important;
+  justify-content: flex-start !important;
+  gap: 20px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#contents .circle-categories-list li {
+  list-style: none !important;
+  flex-shrink: 0 !important;
+}
+#contents .circle-cat-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 90px !important;
+}
+#contents .circle-cat-item a {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+#contents .circle-cat-icon-frame {
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #f8f8f8 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+  overflow: hidden !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+#contents .circle-cat-icon-frame:hover {
+  transform: scale(1.08) translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+}
+#contents .circle-cat-img-source {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+#contents .circle-cat-name {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+  text-align: center !important;
+}
+
+/* ── 트러스트 바 ── */
+#contents .trust-bar {
+  background: #fafaf8 !important;
+  border-top: 1px solid #e5e5e5 !important;
+  border-bottom: 1px solid #e5e5e5 !important;
+  padding: 20px 0 !important;
+}
+#contents .trust-bar-inner {
+  max-width: 1260px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  box-sizing: border-box !important;
+}
+#contents .trust-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+#contents .trust-icon {
+  font-size: 22px !important;
+}
+#contents .trust-text strong {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+}
+#contents .trust-text span {
+  font-size: 11px !important;
+  color: #777 !important;
+}
+#contents .trust-divider {
+  width: 1px !important;
+  height: 32px !important;
+  background: #ddd !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── 콘텐츠 섹션 공통 ── */
+#contents .content-section {
+  padding: 70px 0 !important;
+  box-sizing: border-box !important;
+}
+#contents .content-section.section-alt {
+  background: #fafafa !important;
+}
+#contents .section-container {
+  max-width: 1260px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+}
+#contents .section-head {
+  margin-bottom: 40px !important;
+}
+#contents .section-eyebrow {
+  font-family: 'Outfit', 'Noto Sans KR', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px !important;
+  color: #E6C200 !important;
+  text-transform: uppercase !important;
+}
+#contents .section-title-main {
+  font-size: 32px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  color: #111 !important;
+  margin-bottom: 10px !important;
+}
+#contents .section-title-main strong {
+  font-weight: 800 !important;
+}
+#contents .section-sub {
+  font-size: 15px !important;
+  color: #666 !important;
+  line-height: 1.6 !important;
+}
+#contents .section-badge-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 12px !important;
+}
+#contents .section-more-link {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #888 !important;
+}
+
+/* ── 벤토 그리드 ── */
+#contents .category-bento-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  grid-auto-rows: minmax(160px, auto) !important;
+  gap: 16px !important;
+}
+#contents .cat-bento-card {
+  position: relative !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+#contents .cat-bento-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.15) !important;
+}
+#contents .cat-bento-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+#contents .cat-bento-content {
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 24px !important;
+  width: 100% !important;
+}
+#contents .cat-bento-icon {
+  font-size: 28px !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+#contents .cat-bento-text h3 {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px !important;
+  color: inherit !important;
+}
+#contents .cat-bento-text p {
+  font-size: 12px !important;
+  opacity: 0.75 !important;
+  line-height: 1.5 !important;
+  color: inherit !important;
+}
+#contents .cat-bento-tag {
+  display: inline-block !important;
+  margin-top: 10px !important;
+  padding: 4px 10px !important;
+  border-radius: 12px !important;
+  background: rgba(255,255,255,0.15) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+#contents .cat-bento-hover-arrow {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  font-size: 20px !important;
+  opacity: 0 !important;
+  transition: opacity 0.2s ease !important;
+  z-index: 2 !important;
+}
+#contents .cat-bento-card:hover .cat-bento-hover-arrow {
+  opacity: 1 !important;
+}
+/* 벤토 그리드 카드 크기 */
+#contents .cat-large {
+  grid-column: span 2 !important;
+  grid-row: span 2 !important;
+  min-height: 340px !important;
+}
+#contents .cat-large .cat-bento-icon { font-size: 40px !important; }
+#contents .cat-large .cat-bento-text h3 { font-size: 22px !important; }
+#contents .cat-medium {
+  grid-column: span 2 !important;
+  min-height: 180px !important;
+}
+#contents .cat-small {
+  min-height: 160px !important;
+}
+#contents .cat-wide {
+  grid-column: span 4 !important;
+  min-height: 140px !important;
+}
+#contents .cat-wide .cat-bento-content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+#contents .sale-sticker {
+  padding: 6px 14px !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── 프로세스 스테퍼 ── */
+#contents .process-stepper {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  position: relative !important;
+  margin-bottom: 40px !important;
+}
+#contents .process-step {
+  flex: 1 !important;
+  text-align: center !important;
+  padding: 24px 16px !important;
+  background: #fff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04) !important;
+  border: 1px solid #f0f0f0 !important;
+}
+#contents .step-number {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #E6C200 !important;
+  margin-bottom: 8px !important;
+}
+#contents .step-icon-wrap {
+  margin-bottom: 12px !important;
+}
+#contents .step-icon {
+  font-size: 28px !important;
+}
+#contents .step-title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  margin-bottom: 6px !important;
+}
+#contents .step-desc {
+  font-size: 12px !important;
+  color: #777 !important;
+  line-height: 1.5 !important;
+}
+#contents .step-connector-line {
+  display: none !important;
+}
+#contents .process-cta-row {
+  display: flex !important;
+  gap: 16px !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+#contents .process-main-cta {
+  display: inline-block !important;
+  background: #111 !important;
+  color: #fff !important;
+  padding: 14px 32px !important;
+  border-radius: 28px !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+#contents .process-main-cta:hover {
+  background: #FFD800 !important;
+  color: #111 !important;
+}
+#contents .process-phone-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 14px 24px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 28px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: #555 !important;
+  text-decoration: none !important;
+}
+
+/* ── 납품사례 그리드 ── */
+#contents .cases-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+}
+#contents .case-card {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+#contents .case-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1) !important;
+}
+#contents .case-card--featured {
+  grid-column: span 2 !important;
+  grid-row: span 2 !important;
+}
+#contents .case-img-wrap {
+  position: relative !important;
+  overflow: hidden !important;
+}
+#contents .case-img {
+  width: 100% !important;
+  height: 220px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+#contents .case-card--featured .case-img {
+  height: 100% !important;
+  min-height: 300px !important;
+}
+#contents .case-category-tag {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  background: rgba(0,0,0,0.7) !important;
+  color: #fff !important;
+  padding: 4px 10px !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+#contents .case-info {
+  padding: 16px !important;
+}
+#contents .case-info h4 {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  margin-bottom: 6px !important;
+}
+#contents .case-info p {
+  font-size: 12px !important;
+  color: #777 !important;
+  line-height: 1.5 !important;
+}
+
+/* ── 인쇄 방법 그리드 ── */
+#contents .print-methods-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+}
+#contents .print-card {
+  background: #fff !important;
+  border-radius: 20px !important;
+  border: 1px solid #f0f0f0 !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+#contents .print-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08) !important;
+}
+#contents .print-card-inner {
+  padding: 28px !important;
+}
+#contents .print-icon {
+  font-size: 32px !important;
+}
+#contents .print-name {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  margin: 12px 0 8px !important;
+}
+#contents .print-desc {
+  font-size: 13px !important;
+  color: #666 !important;
+  line-height: 1.5 !important;
+  margin-bottom: 16px !important;
+}
+#contents .print-features {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#contents .print-features li {
+  font-size: 12px !important;
+  color: #555 !important;
+  padding: 3px 0 !important;
+  list-style: none !important;
+}
+
+/* ── 리뷰 벤토 ── */
+#contents .review-bento {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+}
+#contents .review-card {
+  background: #fff !important;
+  border-radius: 20px !important;
+  padding: 28px !important;
+  border: 1px solid #f0f0f0 !important;
+}
+#contents .review-card--large {
+  grid-column: span 2 !important;
+}
+#contents .review-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 16px !important;
+}
+#contents .review-header .stars {
+  color: #FFD800 !important;
+  font-size: 16px !important;
+}
+#contents .review-score {
+  font-weight: 700 !important;
+  color: #111 !important;
+}
+#contents .review-quote {
+  font-size: 14px !important;
+  color: #333 !important;
+  line-height: 1.7 !important;
+  margin: 0 0 16px 0 !important;
+  border: none !important;
+  padding: 0 !important;
+}
+#contents .review-meta strong {
+  display: block !important;
+  font-size: 13px !important;
+  color: #111 !important;
+}
+#contents .review-meta span {
+  font-size: 12px !important;
+  color: #999 !important;
+}
+#contents .review-card--stat {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #111 !important;
+  color: #fff !important;
+}
+#contents .stat-hero {
+  font-size: 48px !important;
+  font-weight: 800 !important;
+  color: #FFD800 !important;
+}
+#contents .stat-label {
+  font-size: 14px !important;
+  color: #aaa !important;
+}
+#contents .stat-stars {
+  color: #FFD800 !important;
+  font-size: 20px !important;
+  margin: 8px 0 !important;
+}
+#contents .stat-sub {
+  font-size: 12px !important;
+  color: #888 !important;
+}
+#contents .stat-mini-grid {
+  display: flex !important;
+  gap: 24px !important;
+  margin-top: 16px !important;
+}
+#contents .stat-mini-grid strong {
+  display: block !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+}
+#contents .stat-mini-grid span {
+  font-size: 11px !important;
+  color: #aaa !important;
+}
+
+/* ── FAQ ── */
+#contents .faq-list {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+}
+#contents .faq-item {
+  border-bottom: 1px solid #eee !important;
+}
+#contents .faq-question {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 20px 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #111 !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  text-align: left !important;
+}
+#contents .faq-toggle {
+  font-size: 22px !important;
+  color: #999 !important;
+  flex-shrink: 0 !important;
+}
+#contents .faq-answer {
+  max-height: 0 !important;
+  overflow: hidden !important;
+  transition: max-height 0.3s ease !important;
+}
+#contents .faq-answer[aria-hidden="false"] {
+  max-height: 300px !important;
+}
+#contents .faq-answer p {
+  padding: 0 0 20px !important;
+  font-size: 14px !important;
+  color: #666 !important;
+  line-height: 1.7 !important;
+}
+
+/* ── CTA 배너 ── */
+#contents .cta-banner-section {
+  background: #111 !important;
+  padding: 60px 0 !important;
+}
+#contents .cta-banner-inner {
+  max-width: 1260px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 32px !important;
+  box-sizing: border-box !important;
+}
+#contents .cta-banner-text h2 {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  margin-bottom: 8px !important;
+}
+#contents .cta-banner-text p {
+  font-size: 15px !important;
+  color: #aaa !important;
+}
+#contents .cta-banner-actions {
+  display: flex !important;
+  gap: 12px !important;
+  flex-shrink: 0 !important;
+}
+#contents .cta-banner-btn-primary {
+  display: inline-block !important;
+  background: #FFD800 !important;
+  color: #111 !important;
+  padding: 14px 28px !important;
+  border-radius: 28px !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+#contents .cta-banner-btn-primary:hover {
+  background: #FFE342 !important;
+  transform: translateY(-2px) !important;
+}
+#contents .cta-banner-btn-secondary {
+  display: inline-block !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  color: #fff !important;
+  padding: 14px 24px !important;
+  border-radius: 28px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  text-decoration: none !important;
+}
+
+/* ── 모바일 반응형 (768px 이하) ── */
+@media (max-width: 768px) {
+  #contents .promo-carousel-card {
+    width: 300px !important;
+    min-height: 180px !important;
+    padding: 24px !important;
+  }
+  #contents .promo-card-title {
+    font-size: 18px !important;
+  }
+  #contents .circle-categories-list {
+    gap: 12px !important;
+  }
+  #contents .circle-cat-item {
+    width: 70px !important;
+  }
+  #contents .circle-cat-icon-frame {
+    width: 56px !important;
+    height: 56px !important;
+  }
+  #contents .circle-cat-name {
+    font-size: 11px !important;
+  }
+  #contents .trust-bar-inner {
+    gap: 12px !important;
+  }
+  #contents .trust-text strong { font-size: 11px !important; }
+  #contents .trust-text span { font-size: 10px !important; }
+
+  #contents .section-title-main {
+    font-size: 24px !important;
+  }
+  #contents .category-bento-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  #contents .cat-large {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important;
+    min-height: 200px !important;
+  }
+  #contents .cat-medium {
+    grid-column: span 1 !important;
+    min-height: 160px !important;
+  }
+  #contents .cat-wide {
+    grid-column: span 2 !important;
+  }
+  #contents .process-stepper {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  #contents .cases-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  #contents .case-card--featured {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important;
+  }
+  #contents .print-methods-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  #contents .review-bento {
+    grid-template-columns: 1fr !important;
+  }
+  #contents .review-card--large {
+    grid-column: span 1 !important;
+  }
+  #contents .cta-banner-inner {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  #contents .cta-banner-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  #contents .cta-banner-btn-primary,
+  #contents .cta-banner-btn-secondary {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+

@@ -7,21 +7,32 @@
 <!--@js(/layout/basic/js/machuda-portfolio.js)-->
 
 <!-- ===== PROMO CARD CAROUSEL ===== -->
-<section class="promo-carousel-section" data-ez-module="image-gallery/2" data-ez="contents-1hempev-1">
+<section class="promo-carousel-section">
   <div class="promo-carousel-wrapper">
     <button class="slider-nav-btn prev-btn" id="promo-prev-btn" aria-label="이전 배너">‹</button>
     <div class="promo-carousel-track-wrapper">
-      <div class="promo-carousel-track" id="promo-carousel-track" module="layout_multibanner">
-        <!--
-            $banner_action = link
-        -->
-        <a href="{$banner_link}" class="promo-carousel-card card-theme-black xans-record-">
+      <div class="promo-carousel-track" id="promo-carousel-track">
+        <!-- 정적 프로모 카드 (카페24 배너매니저 앱 연동 시 동적 전환 가능) -->
+        <a href="/order/basket.html" class="promo-carousel-card card-theme-black">
           <div class="promo-card-content">
-            <h3 class="promo-card-title">{$banner_title}</h3>
-            <p class="promo-card-sub">{$banner_subtitle}</p>
-            <span class="promo-card-btn">{$banner_btn_text}</span>
+            <h3 class="promo-card-title">급건 전문 &amp; 빠른 제작</h3>
+            <p class="promo-card-sub">*급건의 경우 상담 진행 해주세요</p>
+            <span class="promo-card-btn">문의하기</span>
           </div>
-          <img src="{$banner_image}" alt="{$banner_alt}" class="promo-banner-img" onerror="this.style.display='none'">
+        </a>
+        <a href="/order/basket.html" class="promo-carousel-card card-theme-yellow">
+          <div class="promo-card-content">
+            <h3 class="promo-card-title">선거복 3일 긴급 납기</h3>
+            <p class="promo-card-sub">조끼·바람막이·점퍼·모자 초특급 제작</p>
+            <span class="promo-card-btn">견적받기</span>
+          </div>
+        </a>
+        <a href="/board/free/list.html" class="promo-carousel-card card-theme-dark">
+          <div class="promo-card-content">
+            <h3 class="promo-card-title">1,000+ 실제 납품사례</h3>
+            <p class="promo-card-sub">대학·교회·기업·관공서 포트폴리오</p>
+            <span class="promo-card-btn">사례 보기</span>
+          </div>
         </a>
       </div>
     </div>
@@ -33,11 +44,11 @@
 <section class="circle-categories-section">
   <div class="circle-categories-container">
     <h2 class="circle-categories-title">여러상품이 준비되어 있어요</h2>
-    <ul class="circle-categories-list" id="circle-categories-holder" module="Layout_category">
+    <div class="circle-categories-list" id="circle-categories-holder" module="Layout_category">
       <!--
           $category_list = /product/list.html
       -->
-      <li class="circle-cat-item">
+      <div class="circle-cat-item">
         <a href="{$design_page_url}">
           <div class="circle-cat-icon-frame">
             <img src="{$img}" alt="{$name}" class="circle-cat-img-source" onerror="this.style.display='none'">
@@ -45,8 +56,8 @@
           </div>
           <span class="circle-cat-name">{$name}</span>
         </a>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </section>
 
