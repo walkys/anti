@@ -2115,7 +2115,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .top-banner-bar {
     font-size: 11px;
     height: 36px;
-    padding: 0 30px;
+    padding: 0 35px 0 20px;
   }
   .top-banner-close {
     right: 10px;
@@ -2133,7 +2133,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     gap: 15px;
   }
 
-  /* 3. 검색 및 가격 필터 세로 정렬 및 터치 스크롤 */
+  /* 3. 검색 및 가격 필터 세로 정렬 및 터치 스크롤 (우측 페이드 마스크 적용) */
   .header-search-row {
     flex-direction: column;
     align-items: stretch;
@@ -2150,12 +2150,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .price-chips-holder {
     overflow-x: auto;
     white-space: nowrap;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
     margin-left: 0;
     gap: 6px;
     scrollbar-width: none;
     display: flex;
     flex-wrap: nowrap;
+    /* 우측 끝 흐림 처리로 스크롤 가능함을 시각적으로 유도 */
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
   }
   .price-chips-holder::-webkit-scrollbar {
     display: none;
@@ -2166,7 +2169,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     flex-shrink: 0;
   }
 
-  /* 4. GNB 메뉴 모바일 터치 가로 스크롤화 (글자 안잘리고 스크롤되도록 고정) */
+  /* 4. GNB 메뉴 모바일 터치 가로 스크롤화 (우측 페이드 마스크 및 정렬 최적화) */
   .gnb-menu-row {
     flex-direction: column;
     gap: 12px;
@@ -2182,6 +2185,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     scrollbar-width: none;
     display: flex;
     flex-wrap: nowrap !important;
+    /* 우측 끝 흐림 처리로 스크롤이 더 있음을 인지하게 유도 */
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
   }
   .gnb-new-nav::-webkit-scrollbar {
     display: none;
@@ -2189,31 +2195,36 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .gnb-new-nav ul {
     display: flex !important;
     flex-wrap: nowrap !important;
-    gap: 16px !important;
+    gap: 14px !important;
   }
   .gnb-new-nav li {
     display: inline-block;
     flex-shrink: 0;
   }
   .gnb-new-link {
-    font-size: 14px;
+    font-size: 13.5px;
+    font-weight: 600;
     flex-shrink: 0;
     display: inline-block;
     white-space: nowrap;
+    padding-bottom: 4px;
   }
+
+  /* 퀵 링크 3열 균등 분할 배치 (글자 잘림 절대 방지) */
   .gnb-quick-links {
     width: 100%;
-    justify-content: space-between;
-    gap: 8px;
-    display: flex;
-    flex-wrap: nowrap;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    margin-top: 2px;
   }
   .gnb-quick-item {
-    font-size: 11px;
-    padding: 5px 10px;
-    flex: 1;
+    font-size: 11.5px;
+    padding: 7px 4px;
+    width: 100%;
     justify-content: center;
     white-space: nowrap;
+    border-radius: 8px;
   }
 
   /* 5. 프로모션 카드 슬라이더 모바일 스크롤 스냅 (착착 감기는 모바일 스와이프 효과) */
@@ -2224,7 +2235,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     padding: 0 16px;
   }
   .promo-carousel-track-wrapper {
-    scroll-snap-type: x mandatory; /* 모바일 슬라이드 스냅 고정 */
+    scroll-snap-type: x mandatory;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -2233,7 +2244,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     height: 180px;
     padding: 20px;
     border-radius: 16px;
-    scroll-snap-align: start; /* 스크롤 끝나는 지점 스냅 */
+    scroll-snap-align: start;
     scroll-margin-left: 16px;
   }
   .card-theme-black .promo-card-title {
@@ -2262,7 +2273,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
   .circle-categories-list {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important; /* 4열 그리드 고정 */
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 16px 8px !important;
     width: 100%;
     overflow-x: visible;
@@ -2279,7 +2290,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .circle-cat-icon-frame {
     width: 64px;
     height: 64px;
-    margin: 0 auto; /* 가로 중앙 */
+    margin: 0 auto;
   }
   .circle-cat-emoji {
     font-size: 26px;
