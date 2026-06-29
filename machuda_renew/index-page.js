@@ -234,27 +234,7 @@ const CONFIG_DATA = {
         </a>
       `).join('');
     } else {
-      // 카페24 라이브 환경: 실제 카테고리 루프 엘리먼트들에 입체 그라데이션 배경을 무작위 혹은 순차적으로 입혀줍니다.
-      const items = holder.querySelectorAll('.circle-cat-item');
-      items.forEach((item, index) => {
-        const catData = CONFIG_DATA.roundCategories[index % CONFIG_DATA.roundCategories.length];
-        const frame = item.querySelector('.circle-cat-icon-frame');
-        if (frame) {
-          frame.style.background = catData.gradient;
-          // 어드민 등록 이미지가 없으면 텍스트(이모지)로 대체
-          const img = frame.querySelector('.circle-cat-img-source');
-          const fallback = frame.querySelector('.circle-cat-fallback-emoji');
-          if (img && (!img.getAttribute('src') || img.getAttribute('src').includes('{$'))) {
-            img.style.display = 'none';
-            if (fallback) {
-              fallback.textContent = catData.emoji;
-              fallback.style.display = 'inline';
-            }
-          } else if (fallback) {
-            fallback.style.display = 'none';
-          }
-        }
-      });
+      // 카페24 라이브 환경: 배너매니저 또는 HTML로 직접 구성하므로 별도의 스타일링 수정을 하지 않습니다.
     }
   }
 

@@ -53,17 +53,90 @@
 <section class="circle-categories-section">
   <div class="circle-categories-container">
     <h2 class="circle-categories-title">여러상품이 준비되어 있어요</h2>
-    <div class="circle-categories-list" id="circle-categories-holder" module="Layout_category">
-      <!--
-          $category_list = /product/list.html
-      -->
-      <div class="circle-cat-item">
-        <a href="{$design_page_url}">
+    <!-- df-banner-code="circle_categories"를 사용하여 배너매니저 앱에서 원하는 카테고리를 선택/정렬해 노출할 수 있습니다. -->
+    <!-- 앱에 등록된 배너가 없을 경우 아래 작성된 8개의 기본 카테고리가 노출되며, 직접 HTML을 수정하여 링크와 아이콘을 바꿀 수 있습니다. -->
+    <div class="circle-categories-list" id="circle-categories-holder" df-banner-code="circle_categories">
+      
+      <!-- 배너매니저 동적 템플릿 (배너매니저 연동 시 작동) -->
+      <div df-banner-clone class="circle-cat-item" style="display: none;">
+        <a href="{#href}" target="{#target}">
           <div class="circle-cat-icon-frame">
-            <img src="{$img}" alt="{$name}" class="circle-cat-img-source" onerror="this.style.display='none'">
-            <span class="circle-cat-fallback-emoji">🛍️</span>
+            {#item}
           </div>
-          <span class="circle-cat-name">{$name}</span>
+          <span class="circle-cat-name">{#title}</span>
+        </a>
+      </div>
+
+      <!-- 기본 정적 카테고리 8개 -->
+      <div class="circle-cat-item">
+        <a href="/product/list.html?cate_no=321">
+          <div class="circle-cat-icon-frame" style="background: linear-gradient(135deg, #FFF5F5 0%, #FFE3E3 100%);">
+            <span class="circle-cat-fallback-emoji">🧥</span>
+          </div>
+          <span class="circle-cat-name">후드/맨투맨</span>
+        </a>
+      </div>
+      
+      <div class="circle-cat-item">
+        <a href="/product/list.html?cate_no=319">
+          <div class="circle-cat-icon-frame" style="background: linear-gradient(135deg, #F0F4FF 0%, #D9E2FC 100%);">
+            <span class="circle-cat-fallback-emoji">👕</span>
+          </div>
+          <span class="circle-cat-name">반팔티</span>
+        </a>
+      </div>
+      
+      <div class="circle-cat-item">
+        <a href="/product/list.html?cate_no=220">
+          <div class="circle-cat-icon-frame" style="background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);">
+            <span class="circle-cat-fallback-emoji">🦖</span>
+          </div>
+          <span class="circle-cat-name">키즈</span>
+        </a>
+      </div>
+      
+      <div class="circle-cat-item">
+        <a href="/product/list.html?cate_no=221">
+          <div class="circle-cat-icon-frame" style="background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);">
+            <span class="circle-cat-fallback-emoji">🦍</span>
+          </div>
+          <span class="circle-cat-name">빅사이즈</span>
+        </a>
+      </div>
+      
+      <div class="circle-cat-item">
+        <a href="/product/list.html?cate_no=222">
+          <div class="circle-cat-icon-frame" style="background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);">
+            <span class="circle-cat-fallback-emoji">🛡️</span>
+          </div>
+          <span class="circle-cat-name">스태프</span>
+        </a>
+      </div>
+      
+      <div class="circle-cat-item">
+        <a href="/product/list.html?cate_no=285">
+          <div class="circle-cat-icon-frame" style="background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);">
+            <span class="circle-cat-fallback-emoji">⚽</span>
+          </div>
+          <span class="circle-cat-name">유니폼</span>
+        </a>
+      </div>
+      
+      <div class="circle-cat-item">
+        <a href="/product/list.html?cate_no=224">
+          <div class="circle-cat-icon-frame" style="background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);">
+            <span class="circle-cat-fallback-emoji">🎒</span>
+          </div>
+          <span class="circle-cat-name">초등학교 반티</span>
+        </a>
+      </div>
+      
+      <div class="circle-cat-item">
+        <a href="/product/list.html?cate_no=82">
+          <div class="circle-cat-icon-frame" style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);">
+            <span class="circle-cat-fallback-emoji">👨‍👩‍👧‍👦</span>
+          </div>
+          <span class="circle-cat-name">가족티</span>
         </a>
       </div>
     </div>
