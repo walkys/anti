@@ -1,968 +1,224 @@
 <!--@layout(/layout/basic/layout.html)-->
 <!--@js(/layout/basic/js/main.js)-->
 <!--@css(/layout/basic/css/main.css)-->
-<!--@import(/smart-banner/shop1/smart-banner-admin-RES00005.html)-->
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>마추다 MACHUDA | 단체복 주문제작 전문 — 야구점퍼·과잠·교회티·선거복·스포츠유니폼</title>
-  <meta name="description" content="소량 1장부터 대량 3,000장까지. 단체티·과잠·선거복·교회티·스포츠유니폼 주문제작 전문 마추다. 디자인→시안→검수→납품 원스톱. 납기안심제 운영.">
-  <meta name="keywords" content="단체복,과잠,선거복,교회티,단체티,야구점퍼,스포츠유니폼,단체복제작,단체복주문,마추다">
-  <meta property="og:title" content="마추다 MACHUDA | 단체복 주문제작 전문">
-  <meta property="og:description" content="단체복 제작의 새로운 기준. 디자인부터 납품까지 한 번에.">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="/layout/basic/css/style.css?v=20260629_v3">
-  <link rel="stylesheet" href="/layout/basic/css/index-page.css?v=20260629_v3">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
-<body class="light-page">
+<!--@css(/layout/basic/css/index-page.css)-->
+<!--@css(/layout/basic/css/machuda-portfolio.css)-->
+<!--@js(/layout/basic/js/index-page.js)-->
+<!--@js(/layout/basic/js/machuda-portfolio.js)-->
 
-  <!-- ===== TOP BANNER ===== -->
-  <div id="top-banner-holder">
-    <!--@import(/layout/basic/popup.html)-->
+<!-- ===== PROMO CARD CAROUSEL ===== -->
+<section class="promo-carousel-section" data-ez-module="image-gallery/2" data-ez="contents-1hempev-1">
+  <div class="promo-carousel-wrapper">
+    <button class="slider-nav-btn prev-btn" id="promo-prev-btn" aria-label="이전 배너">‹</button>
+    <div class="promo-carousel-track-wrapper">
+      <div class="promo-carousel-track" id="promo-carousel-track" module="layout_multibanner">
+        <!--
+            $banner_action = link
+        -->
+        <a href="{$banner_link}" class="promo-carousel-card card-theme-black xans-record-">
+          <div class="promo-card-content">
+            <h3 class="promo-card-title">{$banner_title}</h3>
+            <p class="promo-card-sub">{$banner_subtitle}</p>
+            <span class="promo-card-btn">{$banner_btn_text}</span>
+          </div>
+          <img src="{$banner_image}" alt="{$banner_alt}" class="promo-banner-img" onerror="this.style.display='none'">
+        </a>
+      </div>
+    </div>
+    <button class="slider-nav-btn next-btn" id="promo-next-btn" aria-label="다음 배너">›</button>
   </div>
+</section>
 
-  <!-- ===== HEADER ===== -->
-  <header class="site-header-new">
-    <div class="header-top-row">
-      <!-- Logo -->
-      <a href="index.html" class="site-logo">
-        <span class="logo-main">MACHUDA</span>
-      </a>
-      
-      <!-- Right Icons -->
-      <div class="header-right-icons">
-        <a href="/order/basket.html" class="icon-link" aria-label="장바구니">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-        </a>
-        <a href="/myshop/wish_list.html" class="icon-link" aria-label="찜한상품">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-        </a>
-        <a href="/myshop/index.html" class="icon-link" aria-label="마이페이지">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <!-- Search Bar & Price badges -->
-    <div class="header-search-row">
-      <div class="search-bar-container" module="Layout_SearchHeader">
-        <!--
-            $product_page = /product/detail.html
-            $category_page = /product/list.html
-        -->
-        <span class="search-icon-inside">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        </span>
-        <input type="text" class="search-bar-input" placeholder="제품을 찾아주세요" id="search-input-main" name="keyword">
-      </div>
-      <!-- Price Filter Chips Holder -->
-      <div class="price-chips-holder" id="price-chips-holder"></div>
-    </div>
-
-    <!-- GNB Menu & Quick links -->
-    <div class="gnb-menu-row">
-      <nav class="gnb-new-nav" id="gnb-menu-holder" module="layout_category">
-        <!--
-            $category_list = /product/list.html
-        -->
-        <a href="{$link_product_list}" class="gnb-new-link">{$category_name}</a>
-      </nav>
-      <div class="gnb-quick-links" id="gnb-quick-holder"></div>
-    </div>
-  </header>
-
-  <!-- ===== PROMO CARD CAROUSEL ===== -->
-  <section class="promo-carousel-section" data-ez-module="image-gallery/2" data-ez="contents-1hempev-1">
-    <div class="promo-carousel-wrapper">
-      <button class="slider-nav-btn prev-btn" id="promo-prev-btn" aria-label="이전 배너">‹</button>
-      <div class="promo-carousel-track-wrapper">
-        <div class="promo-carousel-track" id="promo-carousel-track" module="layout_multibanner">
-          <!--
-              $banner_action = link
-          -->
-          <a href="{$banner_link}" class="promo-carousel-card card-theme-black xans-record-">
-            <div class="promo-card-content">
-              <h3 class="promo-card-title">{$banner_title}</h3>
-              <p class="promo-card-sub">{$banner_subtitle}</p>
-              <span class="promo-card-btn">{$banner_btn_text}</span>
-            </div>
-            <img src="{$banner_image}" alt="{$banner_alt}" class="promo-banner-img" onerror="this.style.display='none'">
-          </a>
-        </div>
-      </div>
-      <button class="slider-nav-btn next-btn" id="promo-next-btn" aria-label="다음 배너">›</button>
-    </div>
-  </section>
-
-  <!-- ===== CIRCLE CATEGORIES SECTION ===== -->
-  <section class="circle-categories-section">
-    <div class="circle-categories-container">
-      <h2 class="circle-categories-title">여러상품이 준비되어 있어요</h2>
-      <div class="circle-categories-list" id="circle-categories-holder" module="layout_category">
-        <!--
-            $category_list = /product/list.html
-        -->
-        <a href="{$link_product_list}" class="circle-cat-item xans-record-">
+<!-- ===== CIRCLE CATEGORIES SECTION ===== -->
+<section class="circle-categories-section">
+  <div class="circle-categories-container">
+    <h2 class="circle-categories-title">여러상품이 준비되어 있어요</h2>
+    <ul class="circle-categories-list" id="circle-categories-holder" module="Layout_category">
+      <!--
+          $category_list = /product/list.html
+      -->
+      <li class="circle-cat-item">
+        <a href="{$design_page_url}">
           <div class="circle-cat-icon-frame">
-            <img src="{$category_image}" alt="{$category_name}" class="circle-cat-img-source" onerror="this.style.display='none'">
+            <img src="{$img}" alt="{$name}" class="circle-cat-img-source" onerror="this.style.display='none'">
             <span class="circle-cat-fallback-emoji">🛍️</span>
           </div>
-          <span class="circle-cat-name">{$category_name}</span>
+          <span class="circle-cat-name">{$name}</span>
         </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar" id="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item" id="trust-1">
+      <span class="trust-icon">🏭</span>
+      <div class="trust-text">
+        <strong>직영 공장 운영</strong>
+        <span>서울 신당동 직접 생산</span>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item" id="trust-2">
+      <span class="trust-icon">⏱️</span>
+      <div class="trust-text">
+        <strong>납기안심제</strong>
+        <span>일정 초과 시 보상 제공</span>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item" id="trust-3">
+      <span class="trust-icon">🔍</span>
+      <div class="trust-text">
+        <strong>전량 검수 납품</strong>
+        <span>불량품 0 품질 보증</span>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item" id="trust-4">
+      <span class="trust-icon">💬</span>
+      <div class="trust-text">
+        <strong>전담 디자이너 1:1 케어</strong>
+        <span>시안 확정까지 무제한 수정</span>
+      </div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item" id="trust-5">
+      <span class="trust-icon">📦</span>
+      <div class="trust-text">
+        <strong>소량 1장부터 제작</strong>
+        <span>최소 주문 수량 없음</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main-content" id="main-content">
+
+  <!-- ===== SECTION: POPULAR CATEGORIES (BENTO GRID) ===== -->
+  <section class="content-section" id="section-categories">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-badge-row">
+          <span class="section-eyebrow">PRODUCT CATEGORIES</span>
+        </div>
+        <h2 class="section-title-main">마추다가 가장 잘 만드는<br><strong>단체복 카테고리</strong></h2>
+      </div>
+
+      <div class="category-bento-grid" id="category-bento">
+
+        <!-- Large Card: 과잠·야구점퍼 -->
+        <a href="/product/list.html?cate_no=213" class="cat-bento-card cat-large" id="cat-bento-varsity">
+          <div class="cat-bento-bg" style="background: linear-gradient(135deg, #111111 0%, #222222 60%, #333333 100%);"></div>
+          <div class="cat-bento-content">
+            <span class="cat-bento-icon">🧥</span>
+            <div class="cat-bento-text">
+              <h3>과잠 · 야구점퍼</h3>
+              <p>멜톤+가죽 슬리브, 고밀도 원단<br>대학 학과·동아리 최다 선택 품목</p>
+              <div class="cat-bento-tag">From 53,000원~</div>
+            </div>
+          </div>
+          <div class="cat-bento-hover-arrow">→</div>
+        </a>
+
+        <!-- Medium Card: 교회티 -->
+        <a href="/product/list.html?cate_no=216" class="cat-bento-card cat-medium" id="cat-bento-church">
+          <div class="cat-bento-bg" style="background: linear-gradient(135deg, #111111 0%, #2a2a2a 100%);"></div>
+          <div class="cat-bento-content">
+            <span class="cat-bento-icon">⛪</span>
+            <div class="cat-bento-text">
+              <h3>교회티 · 종교 단체복</h3>
+              <p>성경 구절·교회 로고 자수·나염 전문</p>
+              <div class="cat-bento-tag">10장부터 OK</div>
+            </div>
+          </div>
+          <div class="cat-bento-hover-arrow">→</div>
+        </a>
+
+        <!-- Medium Card: 선거복 -->
+        <a href="/product/list.html?cate_no=87" class="cat-bento-card cat-medium cat-accent" id="cat-bento-election">
+          <div class="cat-bento-bg" style="background: linear-gradient(135deg, #F5C200 0%, #C9A000 100%);"></div>
+          <div class="cat-bento-content" style="color: #111111;">
+            <span class="cat-bento-icon">📣</span>
+            <div class="cat-bento-text">
+              <h3 style="color:#111">선거복</h3>
+              <p style="color:rgba(0,0,0,0.65)">조끼·바람막이·점퍼·모자<br>초고속 3일 납기 가능</p>
+              <div class="cat-bento-tag" style="background:rgba(0,0,0,0.15);color:#111">긴급 납기 문의</div>
+            </div>
+          </div>
+          <div class="cat-bento-hover-arrow" style="color:#111">→</div>
+        </a>
+
+        <!-- Small Card: 후드·맨투맨 -->
+        <a href="/product/list.html?cate_no=321" class="cat-bento-card cat-small" id="cat-bento-hoodie">
+          <div class="cat-bento-bg" style="background: linear-gradient(135deg, #222222 0%, #111111 100%);"></div>
+          <div class="cat-bento-content">
+            <span class="cat-bento-icon">👕</span>
+            <div class="cat-bento-text">
+              <h3>반티 · 후드티 · 맨투맨</h3>
+              <p>과티·학과티·동아리티</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Small Card: 스포츠 유니폼 -->
+        <a href="/product/list.html?cate_no=285" class="cat-bento-card cat-small" id="cat-bento-sports">
+          <div class="cat-bento-bg" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);"></div>
+          <div class="cat-bento-content">
+            <span class="cat-bento-icon">⚽</span>
+            <div class="cat-bento-text">
+              <h3>스포츠 유니폼</h3>
+              <p>축구·야구·농구 팀복</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Small Card: 근무복 -->
+        <a href="/product/list.html?cate_no=221" class="cat-bento-card cat-small" id="cat-bento-work">
+          <div class="cat-bento-bg" style="background: linear-gradient(135deg, #2a2a2a 0%, #111111 100%);"></div>
+          <div class="cat-bento-content">
+            <span class="cat-bento-icon">👔</span>
+            <div class="cat-bento-text">
+              <h3>근무복 · 카라티</h3>
+              <p>기업·관공서·산업체</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Small Card: 가족·커플티 -->
+        <a href="/product/list.html?cate_no=82" class="cat-bento-card cat-small" id="cat-bento-family">
+          <div class="cat-bento-bg" style="background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);"></div>
+          <div class="cat-bento-content">
+            <span class="cat-bento-icon">👨‍👩‍👧</span>
+            <div class="cat-bento-text">
+              <h3>가족 · 커플티</h3>
+              <p>여행·행사·기념일 맞춤</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Wide Card: 특가세일 -->
+        <a href="/product/list.html?cate_no=464" class="cat-bento-card cat-wide cat-sale" id="cat-bento-sale">
+          <div class="cat-bento-bg" style="background: linear-gradient(135deg, #F5C200 0%, #FFD740 60%, #F5C200 100%);"></div>
+          <div class="cat-bento-content" style="color:#111111;">
+            <span class="cat-bento-icon">🔥</span>
+            <div class="cat-bento-text">
+              <h3 style="color:#111">이번 주 특가 · 땡처리 세일</h3>
+              <p style="color:rgba(0,0,0,0.6)">재고 한정 최대 40% 할인 상품 모음</p>
+            </div>
+            <div class="sale-sticker" style="background:#111;color:#F5C200">SALE</div>
+          </div>
+          <div class="cat-bento-hover-arrow" style="color:#111">→</div>
+        </a>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== TRUST BAR ===== -->
-  <div class="trust-bar" id="trust-bar">
-    <div class="trust-bar-inner">
-      <div class="trust-item" id="trust-1">
-        <span class="trust-icon">🏭</span>
-        <div class="trust-text">
-          <strong>직영 공장 운영</strong>
-          <span>서울 신당동 직접 생산</span>
-        </div>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-item" id="trust-2">
-        <span class="trust-icon">⏱️</span>
-        <div class="trust-text">
-          <strong>납기안심제</strong>
-          <span>일정 초과 시 보상 제공</span>
-        </div>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-item" id="trust-3">
-        <span class="trust-icon">🔍</span>
-        <div class="trust-text">
-          <strong>전량 검수 납품</strong>
-          <span>불량품 0 품질 보증</span>
-        </div>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-item" id="trust-4">
-        <span class="trust-icon">💬</span>
-        <div class="trust-text">
-          <strong>전담 디자이너 1:1 케어</strong>
-          <span>시안 확정까지 무제한 수정</span>
-        </div>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-item" id="trust-5">
-        <span class="trust-icon">📦</span>
-        <div class="trust-text">
-          <strong>소량 1장부터 제작</strong>
-          <span>최소 주문 수량 없음</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== MAIN CONTENT ===== -->
-  <main class="main-content" id="main-content">
-
-    <!-- ===== SECTION: POPULAR CATEGORIES (BENTO GRID) ===== -->
-    <section class="content-section" id="section-categories">
-      <div class="section-container">
-        <div class="section-head">
-          <div class="section-badge-row">
-            <span class="section-eyebrow">PRODUCT CATEGORIES</span>
-          </div>
-          <h2 class="section-title-main">마추다가 가장 잘 만드는<br><strong>단체복 카테고리</strong></h2>
-        </div>
-
-        <div class="category-bento-grid" id="category-bento">
-
-                  <!-- Large Card: 과잠·야구점퍼 -->
-          <a href="#" class="cat-bento-card cat-large" id="cat-bento-varsity">
-            <div class="cat-bento-bg" style="background: linear-gradient(135deg, #111111 0%, #222222 60%, #333333 100%);"></div>
-            <div class="cat-bento-content">
-              <span class="cat-bento-icon">🧥</span>
-              <div class="cat-bento-text">
-                <h3>과잠 · 야구점퍼</h3>
-                <p>멜톤+가죽 슬리브, 고밀도 원단<br>대학 학과·동아리 최다 선택 품목</p>
-                <div class="cat-bento-tag">From 53,000원~</div>
-              </div>
-            </div>
-            <div class="cat-bento-hover-arrow">→</div>
-          </a>
-
-          <!-- Medium Card: 교회티 -->
-          <a href="#" class="cat-bento-card cat-medium" id="cat-bento-church">
-            <div class="cat-bento-bg" style="background: linear-gradient(135deg, #111111 0%, #2a2a2a 100%);"></div>
-            <div class="cat-bento-content">
-              <span class="cat-bento-icon">⛪</span>
-              <div class="cat-bento-text">
-                <h3>교회티 · 종교 단체복</h3>
-                <p>성경 구절·교회 로고 자수·나염 전문</p>
-                <div class="cat-bento-tag">10장부터 OK</div>
-              </div>
-            </div>
-            <div class="cat-bento-hover-arrow">→</div>
-          </a>
-
-          <!-- Medium Card: 선거복 -->
-          <a href="#" class="cat-bento-card cat-medium cat-accent" id="cat-bento-election">
-            <div class="cat-bento-bg" style="background: linear-gradient(135deg, #F5C200 0%, #C9A000 100%);"></div>
-            <div class="cat-bento-content" style="color: #111111;">
-              <span class="cat-bento-icon">📣</span>
-              <div class="cat-bento-text">
-                <h3 style="color:#111">선거복</h3>
-                <p style="color:rgba(0,0,0,0.65)">조끼·바람막이·점퍼·모자<br>초고속 3일 납기 가능</p>
-                <div class="cat-bento-tag" style="background:rgba(0,0,0,0.15);color:#111">긴급 납기 문의</div>
-              </div>
-            </div>
-            <div class="cat-bento-hover-arrow" style="color:#111">→</div>
-          </a>
-
-          <!-- Small Card: 후드·맨투맨 -->
-          <a href="#" class="cat-bento-card cat-small" id="cat-bento-hoodie">
-            <div class="cat-bento-bg" style="background: linear-gradient(135deg, #222222 0%, #111111 100%);"></div>
-            <div class="cat-bento-content">
-              <span class="cat-bento-icon">👕</span>
-              <div class="cat-bento-text">
-                <h3>반티 · 후드티 · 맨투맨</h3>
-                <p>과티·학과티·동아리티</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Small Card: 스포츠 유니폼 -->
-          <a href="#" class="cat-bento-card cat-small" id="cat-bento-sports">
-            <div class="cat-bento-bg" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);"></div>
-            <div class="cat-bento-content">
-              <span class="cat-bento-icon">⚽</span>
-              <div class="cat-bento-text">
-                <h3>스포츠 유니폼</h3>
-                <p>축구·야구·농구 팀복</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Small Card: 근무복 -->
-          <a href="#" class="cat-bento-card cat-small" id="cat-bento-work">
-            <div class="cat-bento-bg" style="background: linear-gradient(135deg, #2a2a2a 0%, #111111 100%);"></div>
-            <div class="cat-bento-content">
-              <span class="cat-bento-icon">👔</span>
-              <div class="cat-bento-text">
-                <h3>근무복 · 카라티</h3>
-                <p>기업·관공서·산업체</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Small Card: 가족·커플티 -->
-          <a href="#" class="cat-bento-card cat-small" id="cat-bento-family">
-            <div class="cat-bento-bg" style="background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);"></div>
-            <div class="cat-bento-content">
-              <span class="cat-bento-icon">👨‍👩‍👧</span>
-              <div class="cat-bento-text">
-                <h3>가족 · 커플티</h3>
-                <p>여행·행사·기념일 맞춤</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Wide Card: 특가세일 -->
-          <a href="#" class="cat-bento-card cat-wide cat-sale" id="cat-bento-sale">
-            <div class="cat-bento-bg" style="background: linear-gradient(135deg, #F5C200 0%, #FFD740 60%, #F5C200 100%);"></div>
-            <div class="cat-bento-content" style="color:#111111;">
-              <span class="cat-bento-icon">🔥</span>
-              <div class="cat-bento-text">
-                <h3 style="color:#111">이번 주 특가 · 땡처리 세일</h3>
-                <p style="color:rgba(0,0,0,0.6)">재고 한정 최대 40% 할인 상품 모음</p>
-              </div>
-              <div class="sale-sticker" style="background:#111;color:#F5C200">SALE</div>
-            </div>
-            <div class="cat-bento-hover-arrow" style="color:#111">→</div>
-          </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SECTION: BEST SELLERS ===== -->
-    <section class="content-section section-alt" id="section-bestsellers">
-      <div class="section-container">
-        <div class="section-head">
-          <div class="section-badge-row">
-            <span class="section-eyebrow">BEST SELLERS</span>
-            <a href="#" class="section-more-link" id="link-more-best">전체보기 →</a>
-          </div>
-          <h2 class="section-title-main">재구매율 1위<br><strong>베스트셀러 단체복</strong></h2>
-          <p class="section-sub">100장 이상 주문 시 최대 28% 단가 할인 제공</p>
-        </div>
-
-        <!-- Product Card Grid -->
-        <div class="product-grid" id="product-grid-best">
-
-          <div class="product-card" id="prod-card-1">
-            <div class="product-img-wrap">
-              <div class="product-img-placeholder pi-varsity">
-                <span>🧥</span>
-                <p>야구점퍼·과잠</p>
-              </div>
-              <div class="product-badges">
-                <span class="badge-bestseller">BEST</span>
-                <span class="badge-discount">최대 15%↓</span>
-              </div>
-              <button class="product-wish" aria-label="찜하기">♡</button>
-            </div>
-            <div class="product-info">
-              <span class="product-brand">MACHUDA Craft</span>
-              <h3 class="product-name">프리미엄 멜톤 야구점퍼 (과잠)</h3>
-              <p class="product-desc">고밀도 멜톤 바디 + 가죽 소매. 입체 자수 포함</p>
-              <div class="product-price-row">
-                <span class="price-qty">1장~</span>
-                <span class="price-main">53,000원~</span>
-              </div>
-              <div class="product-price-row discount-row">
-                <span class="price-qty">200장~</span>
-                <span class="price-main price-sale">45,050원~</span>
-              </div>
-              <a href="order-form.html" class="product-cta" id="prod-cta-1">시안 및 견적 문의</a>
-            </div>
-          </div>
-
-          <div class="product-card" id="prod-card-2">
-            <div class="product-img-wrap">
-              <div class="product-img-placeholder pi-hoodie">
-                <span>👕</span>
-                <p>후드티셔츠</p>
-              </div>
-              <div class="product-badges">
-                <span class="badge-bestseller">BEST</span>
-                <span class="badge-discount">최대 20%↓</span>
-              </div>
-              <button class="product-wish" aria-label="찜하기">♡</button>
-            </div>
-            <div class="product-info">
-              <span class="product-brand">MACHUDA Premium</span>
-              <h3 class="product-name">헤비 쭈리 오버핏 풀오버 후드</h3>
-              <p class="product-desc">800g 헤비 원단, 무너지지 않는 각. 동아리 1위 품목</p>
-              <div class="product-price-row">
-                <span class="price-qty">1장~</span>
-                <span class="price-main">32,000원~</span>
-              </div>
-              <div class="product-price-row discount-row">
-                <span class="price-qty">200장~</span>
-                <span class="price-main price-sale">25,600원~</span>
-              </div>
-              <a href="order-form.html" class="product-cta" id="prod-cta-2">시안 및 견적 문의</a>
-            </div>
-          </div>
-
-          <div class="product-card" id="prod-card-3">
-            <div class="product-img-wrap">
-              <div class="product-img-placeholder pi-tshirt">
-                <span>👕</span>
-                <p>단체 반팔티</p>
-              </div>
-              <div class="product-badges">
-                <span class="badge-bestseller">BEST</span>
-                <span class="badge-discount">최대 28%↓</span>
-              </div>
-              <button class="product-wish" aria-label="찜하기">♡</button>
-            </div>
-            <div class="product-info">
-              <span class="product-brand">Gildan</span>
-              <h3 class="product-name">길단 2000 울트라코튼 어덜트 반팔티</h3>
-              <p class="product-desc">단체티 표준. 비침 없음, 200장 이상 압도적 할인</p>
-              <div class="product-price-row">
-                <span class="price-qty">1장~</span>
-                <span class="price-main">16,190원~</span>
-              </div>
-              <div class="product-price-row discount-row">
-                <span class="price-qty">200장~</span>
-                <span class="price-main price-sale">11,640원~</span>
-              </div>
-              <a href="order-form.html" class="product-cta" id="prod-cta-3">시안 및 견적 문의</a>
-            </div>
-          </div>
-
-          <div class="product-card" id="prod-card-4">
-            <div class="product-img-wrap">
-              <div class="product-img-placeholder pi-election">
-                <span>📣</span>
-                <p>선거 조끼</p>
-              </div>
-              <div class="product-badges">
-                <span class="badge-hot">HOT</span>
-              </div>
-              <button class="product-wish" aria-label="찜하기">♡</button>
-            </div>
-            <div class="product-info">
-              <span class="product-brand">선거·캠페인</span>
-              <h3 class="product-name">선거 캠페인 조끼 (인쇄 포함)</h3>
-              <p class="product-desc">후보자명·번호 전면/후면 인쇄 포함, 초고속 납기</p>
-              <div class="product-price-row">
-                <span class="price-qty">30장~</span>
-                <span class="price-main">12,000원~</span>
-              </div>
-              <div class="product-price-row">
-                <span class="price-qty text-accent">⚡ 긴급 납기 가능</span>
-              </div>
-              <a href="order-form.html" class="product-cta" id="prod-cta-4">긴급 견적 문의</a>
-            </div>
-          </div>
-
-          <div class="product-card" id="prod-card-5">
-            <div class="product-img-wrap">
-              <div class="product-img-placeholder pi-polo">
-                <span>👔</span>
-                <p>카라 폴로티</p>
-              </div>
-              <div class="product-badges">
-                <span class="badge-new">NEW</span>
-              </div>
-              <button class="product-wish" aria-label="찜하기">♡</button>
-            </div>
-            <div class="product-info">
-              <span class="product-brand">근무·기업</span>
-              <h3 class="product-name">기능성 카라 폴로 티셔츠</h3>
-              <p class="product-desc">쿨론 소재, 기업 로고 자수·나염. 관공서·기업 납품 다수</p>
-              <div class="product-price-row">
-                <span class="price-qty">30장~</span>
-                <span class="price-main">18,500원~</span>
-              </div>
-              <div class="product-price-row discount-row">
-                <span class="price-qty">100장~</span>
-                <span class="price-main price-sale">15,200원~</span>
-              </div>
-              <a href="order-form.html" class="product-cta" id="prod-cta-5">시안 및 견적 문의</a>
-            </div>
-          </div>
-
-          <div class="product-card" id="prod-card-6">
-            <div class="product-img-wrap">
-              <div class="product-img-placeholder pi-sports">
-                <span>⚽</span>
-                <p>스포츠 유니폼</p>
-              </div>
-              <div class="product-badges">
-                <span class="badge-bestseller">BEST</span>
-              </div>
-              <button class="product-wish" aria-label="찜하기">♡</button>
-            </div>
-            <div class="product-info">
-              <span class="product-brand">스포츠·팀</span>
-              <h3 class="product-name">기능성 서브리 팀 유니폼 세트</h3>
-              <p class="product-desc">축구·야구·농구 팀복, 등번호·이름 마킹 포함</p>
-              <div class="product-price-row">
-                <span class="price-qty">1벌~</span>
-                <span class="price-main">24,000원~</span>
-              </div>
-              <div class="product-price-row discount-row">
-                <span class="price-qty">20벌~</span>
-                <span class="price-main price-sale">19,000원~</span>
-              </div>
-              <a href="order-form.html" class="product-cta" id="prod-cta-6">시안 및 견적 문의</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SECTION: PROCESS ===== -->
-    <section class="content-section" id="section-process">
-      <div class="section-container">
-        <div class="section-head">
-          <div class="section-badge-row">
-            <span class="section-eyebrow">ORDER PROCESS</span>
-          </div>
-          <h2 class="section-title-main">주문부터 납품까지<br><strong>원스톱 제작 프로세스</strong></h2>
-          <p class="section-sub">복잡한 단체복 제작, 마추다 전담팀이 처음부터 끝까지 안내해 드립니다</p>
-        </div>
-
-        <div class="process-stepper" id="process-stepper">
-          <div class="step-connector-line"></div>
-
-          <div class="process-step" id="step-1">
-            <div class="step-number">01</div>
-            <div class="step-icon-wrap">
-              <span class="step-icon">📋</span>
-            </div>
-            <h4 class="step-title">견적 · 주문 접수</h4>
-            <p class="step-desc">스마트 주문서 또는 카카오톡으로 제품 종류, 수량, 원하는 디자인 방향을 알려주세요.</p>
-          </div>
-
-          <div class="process-step" id="step-2">
-            <div class="step-number">02</div>
-            <div class="step-icon-wrap">
-              <span class="step-icon">🎨</span>
-            </div>
-            <h4 class="step-title">시안 제작 · 수정</h4>
-            <p class="step-desc">전담 디자이너가 24시간 내 첫 시안을 제출. 무제한 수정으로 원하는 디자인까지.</p>
-          </div>
-
-          <div class="process-step" id="step-3">
-            <div class="step-number">03</div>
-            <div class="step-icon-wrap">
-              <span class="step-icon">✅</span>
-            </div>
-            <h4 class="step-title">시안 확정 · 결제</h4>
-            <p class="step-desc">시안 최종 확정 후 견적 금액 확인 및 결제. 전자결제·세금계산서 발행 가능.</p>
-          </div>
-
-          <div class="process-step" id="step-4">
-            <div class="step-number">04</div>
-            <div class="step-icon-wrap">
-              <span class="step-icon">🏭</span>
-            </div>
-            <h4 class="step-title">생산 · 검수</h4>
-            <p class="step-desc">직영 공장에서 전량 생산 후 QC팀이 한 장 한 장 직접 검수합니다.</p>
-          </div>
-
-          <div class="process-step" id="step-5">
-            <div class="step-number">05</div>
-            <div class="step-icon-wrap">
-              <span class="step-icon">🚚</span>
-            </div>
-            <h4 class="step-title">포장 · 납품</h4>
-            <p class="step-desc">개별 포장 후 약속된 납기일까지 안전하게 배송. 납기안심제로 일정을 보장합니다.</p>
-          </div>
-        </div>
-
-        <div class="process-cta-row" id="process-cta-row">
-          <a href="order-form.html" class="process-main-cta" id="process-cta-btn">지금 주문서 작성하기 →</a>
-          <a href="tel:02-2252-8082" class="process-phone-cta" id="process-phone-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-            전화 상담 02-2252-8082
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SECTION: DELIVERY CASES ===== -->
-    <section class="content-section section-alt" id="section-cases">
-      <div class="section-container">
-        <div class="section-head">
-          <div class="section-badge-row">
-            <span class="section-eyebrow">DELIVERY CASES</span>
-            <a href="#" class="section-more-link" id="link-more-cases">납품사례 전체보기 →</a>
-          </div>
-          <h2 class="section-title-main">마추다가 납품한<br><strong>실제 제작 사례</strong></h2>
-        </div>
-
-        <div class="cases-grid" id="cases-grid">
-
-          <!-- Case 1: 태그멤버스 후드집업 (Featured) -->
-          <div class="case-card case-card--featured" id="case-1">
-            <div class="case-img-wrap">
-              <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80" alt="태그멤버스 특양면 후드집업 납품사례" class="case-img" loading="lazy">
-              <div class="case-category-tag">자수 납품사례</div>
-            </div>
-            <div class="case-info">
-              <h4>국제학교 · 태그멤버스</h4>
-              <p>특양면 후드집업 150장 · 직자수 왼가슴 소형 & 후면 대형 · 2024년</p>
-              <button type="button" class="btn-calc-preset" data-preset-prod="zip_heavy" data-preset-qty="150" data-preset-print-front="embroidery" data-preset-print-back="embroidery">이 디자인 그대로 견적내기</button>
-            </div>
-          </div>
-
-          <!-- Case 2: 일산은혜교회 단체티 -->
-          <div class="case-card" id="case-2">
-            <div class="case-img-wrap">
-              <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80" alt="일산은혜교회 20수 라운드 반팔티 납품사례" class="case-img" loading="lazy">
-              <div class="case-category-tag">나염 납품사례</div>
-            </div>
-            <div class="case-info">
-              <h4>종교/교회 · 일산은혜교회</h4>
-              <p>20수 라운드 반팔 350장 · 전면 로고 나염 & 후면 특대형 나염 · 2024년</p>
-              <button type="button" class="btn-calc-preset" data-preset-prod="tee20" data-preset-qty="350" data-preset-print-front="screen" data-preset-print-back="screen">이 디자인 그대로 견적내기</button>
-            </div>
-          </div>
-
-          <!-- Case 3: 안산2030 러닝클럽 후드티 -->
-          <div class="case-card" id="case-3">
-            <div class="case-img-wrap">
-              <img src="https://images.unsplash.com/photo-1544698310-74ea9d1c8258?auto=format&fit=crop&w=600&q=80" alt="안산2030 헤비 후드티 납품사례" class="case-img" loading="lazy">
-              <div class="case-category-tag">나염/필름 납품사례</div>
-            </div>
-            <div class="case-info">
-              <h4>러닝크루 · 안산2030</h4>
-              <p>헤비 쭈리 후드티 80장 · 전면 은분나염 & 후면 특대형 은분나염 · 2024년</p>
-              <button type="button" class="btn-calc-preset" data-preset-prod="hoodie_heavy" data-preset-qty="80" data-preset-print-front="screen" data-preset-print-back="screen">이 디자인 그대로 견적내기</button>
-            </div>
-          </div>
-
-          <!-- Case 4: 나주축협 올포켓 조끼 -->
-          <div class="case-card" id="case-4">
-            <div class="case-img-wrap">
-              <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80" alt="나주축협 올포켓 조끼 납품사례" class="case-img" loading="lazy">
-              <div class="case-category-tag">나염 납품사례</div>
-            </div>
-            <div class="case-info">
-              <h4>기업/축협 · 나주축협</h4>
-              <p>올포켓 조끼 120장 · 후면 대형 실크 나염 인쇄 · 2024년</p>
-              <button type="button" class="btn-calc-preset" data-preset-prod="vest_taslan" data-preset-qty="120" data-preset-print-front="none" data-preset-print-back="screen">이 디자인 그대로 견적내기</button>
-            </div>
-          </div>
-
-          <!-- Case 5: 힐스파 와이넥 찜질복 세트 -->
-          <div class="case-card" id="case-5">
-            <div class="case-img-wrap">
-              <img src="https://images.unsplash.com/photo-1608748010899-18f300247112?auto=format&fit=crop&w=600&q=80" alt="힐스파 황토 와이넥 찜질복 세트 납품사례" class="case-img" loading="lazy">
-              <div class="case-category-tag">기타/특수복 납품사례</div>
-            </div>
-            <div class="case-info">
-              <h4>웰니스 · 힐스파 찜질방</h4>
-              <p>와이넥 찜질복 세트 250장 · 전면 1도 배색 나염 인쇄 · 2024년</p>
-              <button type="button" class="btn-calc-preset" data-preset-prod="sauna_ynack" data-preset-qty="250" data-preset-print-front="screen" data-preset-print-back="none">이 디자인 그대로 견적내기</button>
-            </div>
-          </div>
-
-          <!-- Case 6: 청춘날다 맞춤제작 롱돕바 -->
-          <div class="case-card" id="case-6">
-            <div class="case-img-wrap">
-              <img src="https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=600&q=80" alt="청춘날다 응원단 맞춤제작 롱돕바 납품사례" class="case-img" loading="lazy">
-              <div class="case-category-tag">자수 납품사례</div>
-            </div>
-            <div class="case-info">
-              <h4>대학 연합 · 청춘날다</h4>
-              <p>프리미엄 롱돕바 70장 · 전면 직자수 왼가슴 & 후면 자수 · 2024년</p>
-              <button type="button" class="btn-calc-preset" data-preset-prod="varsity_classic" data-preset-qty="70" data-preset-print-front="embroidery" data-preset-print-back="embroidery">이 디자인 그대로 견적내기</button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SECTION: PRINT METHODS ===== -->
-    <section class="content-section" id="section-print">
-      <div class="section-container">
-        <div class="section-head">
-          <div class="section-badge-row">
-            <span class="section-eyebrow">PRINTING METHODS</span>
-          </div>
-          <h2 class="section-title-main">마추다의 인쇄·가공 기법<br><strong>4가지 방식 완벽 지원</strong></h2>
-          <p class="section-sub">로고·텍스트·그림 등 디자인 성격에 맞는 최적의 기법을 추천해 드립니다</p>
-        </div>
-
-        <div class="print-methods-grid" id="print-methods-grid">
-
-          <div class="print-card" id="print-embroidery">
-            <div class="print-card-inner">
-              <div class="print-icon-wrap">
-                <span class="print-icon">🧵</span>
-              </div>
-              <h4 class="print-name">자수 (Embroidery)</h4>
-              <p class="print-desc">실로 직접 수놓는 고급 기법. 텍스트·로고에 최적. 내구성이 가장 뛰어납니다.</p>
-              <ul class="print-features">
-                <li>✓ 고급스럽고 입체적인 표현</li>
-                <li>✓ 세탁 후에도 변형 없음</li>
-                <li>✓ 과잠·카라티에 권장</li>
-              </ul>
-              <a href="order-form.html" class="print-cta-link">자수 견적 문의 →</a>
-            </div>
-          </div>
-
-          <div class="print-card" id="print-screen">
-            <div class="print-card-inner">
-              <div class="print-icon-wrap">
-                <span class="print-icon">🖨️</span>
-              </div>
-              <h4 class="print-name">나염 (Screen Print)</h4>
-              <p class="print-desc">잉크를 스크린으로 눌러 인쇄. 대량 시 단가가 가장 낮고 색감이 선명합니다.</p>
-              <ul class="print-features">
-                <li>✓ 대량 주문 시 가장 경제적</li>
-                <li>✓ 선명하고 생생한 색감</li>
-                <li>✓ 단체티·행사복에 권장</li>
-              </ul>
-              <a href="order-form.html" class="print-cta-link">나염 견적 문의 →</a>
-            </div>
-          </div>
-
-          <div class="print-card" id="print-transfer">
-            <div class="print-card-inner">
-              <div class="print-icon-wrap">
-                <span class="print-icon">🔥</span>
-              </div>
-              <h4 class="print-name">전사 (Heat Transfer)</h4>
-              <p class="print-desc">열전사 방식으로 복잡한 풀컬러 이미지도 소량으로 정밀 인쇄 가능.</p>
-              <ul class="print-features">
-                <li>✓ 소량·복잡한 디자인에 최적</li>
-                <li>✓ 사진·그라데이션 표현 가능</li>
-                <li>✓ 스포츠팀·동아리 티에 권장</li>
-              </ul>
-              <a href="order-form.html" class="print-cta-link">전사 견적 문의 →</a>
-            </div>
-          </div>
-
-          <div class="print-card" id="print-direct">
-            <div class="print-card-inner">
-              <div class="print-icon-wrap">
-                <span class="print-icon">🎨</span>
-              </div>
-              <h4 class="print-name">실사 / DTG</h4>
-              <p class="print-desc">디지털 직접 인쇄 방식. 1장부터 복잡한 풀컬러 사진도 바로 인쇄 가능.</p>
-              <ul class="print-features">
-                <li>✓ 1장 소량 인쇄 가능</li>
-                <li>✓ 사진·일러스트 완벽 재현</li>
-                <li>✓ 샘플·소량 제작에 권장</li>
-              </ul>
-              <a href="order-form.html" class="print-cta-link">실사 견적 문의 →</a>
-            </div>
-          </div>
-
-        </div>
-        <p class="print-more-link">
-          <a href="#" id="link-more-print">더 많은 인쇄 방법 보러가기 →</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- ===== SECTION: REVIEWS ===== -->
-    <section class="content-section section-alt" id="section-reviews">
-      <div class="section-container">
-        <div class="section-head">
-          <div class="section-badge-row">
-            <span class="section-eyebrow">TESTIMONIALS</span>
-            <a href="#" class="section-more-link" id="link-more-reviews">포토후기 전체보기 →</a>
-          </div>
-          <h2 class="section-title-main">12만 개 고객 후기가<br><strong>증명하는 마추다 퀄리티</strong></h2>
-          <p class="section-sub">평균 평점 4.97 / 5.0 · 재구매율 73%</p>
-        </div>
-
-        <div class="review-bento" id="review-bento">
-
-          <div class="review-card review-card--large" id="review-1">
-            <div class="review-header">
-              <div class="stars">★★★★★</div>
-              <span class="review-score">5.0</span>
-            </div>
-            <blockquote class="review-quote">"축제 일정에 맞춰 칼같이 납기해주셨어요! 학교 축제용 과잠으로 120장 주문했는데, 기한이 일주일밖에 안 남아서 초조했습니다. 마추다 납기안심제 덕분에 축제 하루 전날 여유 있게 전량 도착했고 봉제선이나 자수 퀄리티도 기가 막힙니다."</blockquote>
-            <div class="review-meta">
-              <strong>서울대학교 컴퓨터공학과 학생회</strong>
-              <span>과잠 120장 · 자수 포함</span>
-            </div>
-          </div>
-
-          <div class="review-card" id="review-2">
-            <div class="review-header">
-              <div class="stars">★★★★★</div>
-              <span class="review-score">4.9</span>
-            </div>
-            <blockquote class="review-quote">"디자이너 피드백이 빨라요. 로고 자수 도안이 복잡했는데, 대화창에서 3차까지 정밀 수정해 주셨습니다. 완전 대만족."</blockquote>
-            <div class="review-meta">
-              <strong>네이버 락밴드 동아리 회장</strong>
-              <span>후드티 50장 · 자수</span>
-            </div>
-          </div>
-
-          <div class="review-card" id="review-3">
-            <div class="review-header">
-              <div class="stars">★★★★★</div>
-              <span class="review-score">5.0</span>
-            </div>
-            <blockquote class="review-quote">"소량 주문도 친절하게. 가족 여행용 맨투맨 5장 소량이었는데도 시안부터 포장까지 꼼꼼히 신경 써 주셨어요."</blockquote>
-            <div class="review-meta">
-              <strong>개인 구매자 이서영 님</strong>
-              <span>맨투맨 5장 · 나염</span>
-            </div>
-          </div>
-
-          <div class="review-card" id="review-4">
-            <div class="review-header">
-              <div class="stars">★★★★★</div>
-              <span class="review-score">5.0</span>
-            </div>
-            <blockquote class="review-quote">"선거 조끼 1,200장을 3일 만에 완납해주셨습니다. 선거 일정이 촉박했는데 마추다 아니었으면 불가능했을 거예요."</blockquote>
-            <div class="review-meta">
-              <strong>국회의원 선거 캠프 실무자</strong>
-              <span>선거 조끼 1,200장</span>
-            </div>
-          </div>
-
-          <div class="review-card review-card--stat" id="review-stat">
-            <div class="stat-hero">4.97</div>
-            <p class="stat-label">평균 별점</p>
-            <div class="stars stat-stars">★★★★★</div>
-            <p class="stat-sub">12만+ 누적 후기 기준</p>
-            <div class="stat-mini-grid">
-              <div><strong>98%</strong><span>납기 준수</span></div>
-              <div><strong>73%</strong><span>재구매율</span></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SECTION: FAQ ===== -->
-    <section class="content-section" id="section-faq">
-      <div class="section-container">
-        <div class="section-head">
-          <div class="section-badge-row">
-            <span class="section-eyebrow">FAQ</span>
-          </div>
-          <h2 class="section-title-main">자주 묻는 질문</h2>
-        </div>
-
-        <div class="faq-list" id="faq-list">
-
-          <div class="faq-item" id="faq-1">
-            <button class="faq-question" id="faq-q-1" aria-expanded="false">
-              <span>최소 주문 수량이 있나요?</span>
-              <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a-1" aria-hidden="true">
-              <p>마추다는 소량 1장부터 제작이 가능합니다. 단, 품목 및 가공 방식에 따라 최소 수량 제한이 있을 수 있으니 견적 문의를 통해 확인해 주세요.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" id="faq-2">
-            <button class="faq-question" id="faq-q-2" aria-expanded="false">
-              <span>납기는 얼마나 걸리나요?</span>
-              <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a-2" aria-hidden="true">
-              <p>시안 확정 후 일반적으로 10~14일 소요됩니다. 선거복 등 긴급 제작의 경우 빠르면 3일 납기도 가능합니다. 마추다는 납기안심제를 운영하여 약속한 납기일을 지키지 못할 경우 보상을 제공합니다.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" id="faq-3">
-            <button class="faq-question" id="faq-q-3" aria-expanded="false">
-              <span>시안을 먼저 보고 주문할 수 있나요?</span>
-              <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a-3" aria-hidden="true">
-              <p>네, 가능합니다. 주문서를 제출하시면 전담 디자이너가 24시간 내 첫 번째 시안을 제출해 드립니다. 시안 확정 전까지는 비용이 발생하지 않으며, 무제한 수정이 가능합니다.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" id="faq-4">
-            <button class="faq-question" id="faq-q-4" aria-expanded="false">
-              <span>세금계산서 발행이 가능한가요?</span>
-              <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a-4" aria-hidden="true">
-              <p>네, 사업자 거래 시 세금계산서 발행이 가능합니다. 관공서·기업의 경우 견적서·거래명세서 등 필요 서류도 함께 제공해 드립니다.</p>
-            </div>
-          </div>
-
-          <div class="faq-item" id="faq-5">
-            <button class="faq-question" id="faq-q-5" aria-expanded="false">
-              <span>인쇄 로고 파일을 받을 수 있나요?</span>
-              <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" id="faq-a-5" aria-hidden="true">
-              <p>마추다에서 제작한 시안 파일의 저작권은 고객님께 귀속됩니다. 완성된 인쇄 파일을 원하시면 파일 전송을 요청해 주시면 제공해 드립니다.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CTA BANNER ===== -->
-    <section class="cta-banner-section" id="section-cta-banner">
-      <div class="cta-banner-inner">
-        <div class="cta-banner-text">
-          <h2 id="cta-banner-title">지금 바로 제작을 시작해보세요</h2>
-          <p id="cta-banner-sub">전담 디자이너가 시안부터 납품까지 처음부터 끝까지 함께합니다</p>
-        </div>
-        <div class="cta-banner-actions" id="cta-banner-actions">
-          <a href="order-form.html" class="cta-banner-btn-primary" id="cta-order-btn">주문서 작성 시작하기 →</a>
-          <a href="tel:02-2252-8082" class="cta-banner-btn-secondary" id="cta-phone-btn">📞 02-2252-8082</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer" id="site-footer">
-    <div class="footer-inner">
-
-      <div class="footer-brand-col">
-        <div class="footer-logo">MACHUDA<span class="logo-dot">.</span></div>
-        <p class="footer-tagline">단체복 제작의 새로운 기준.<br>디자인부터 납품까지, 처음부터 끝까지.</p>
-        <address class="footer-address">
-          서울특별시 중구 동호로20길 52 (신당동)<br>
-          <a href="tel:02-2252-8082">Tel. 02-2252-8082</a><br>
-          <a href="mailto:t8082@naver.com">t8082@naver.com</a>
-        </address>
-        <div class="footer-sns" id="footer-sns">
-          <a href="https://www.instagram.com/machuda_com/" class="sns-link" id="sns-instagram" target="_blank" rel="noopener" aria-label="인스타그램">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="https://blog.naver.com/t8082" class="sns-link" id="sns-blog" target="_blank" rel="noopener" aria-label="네이버 블로그">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.8 2H7.2C4.2 2 2 4.3 2 7.2v9.5C2 19.7 4.3 22 7.2 22h9.5c3 0 5.3-2.3 5.3-5.3V7.2C22 4.3 19.7 2 16.8 2zm-1.6 14.1H8.8v-1.5l4.9-6.1H9V7h6.3v1.5l-4.9 6.1H15v1.5z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/sjmachuda" class="sns-link" id="sns-facebook" target="_blank" rel="noopener" aria-label="페이스북">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-links-grid" id="footer-links-grid">
-
-        <div class="footer-col">
-          <h5 class="footer-col-title">제품 카테고리</h5>
-          <a href="#" class="footer-link">과잠 · 야구점퍼</a>
-          <a href="#" class="footer-link">반티 · 후드티 · 맨투맨</a>
-          <a href="#" class="footer-link">교회티 · 종교 단체복</a>
-          <a href="#" class="footer-link">선거복</a>
-          <a href="#" class="footer-link">스포츠 유니폼</a>
-          <a href="#" class="footer-link">근무복 · 카라티</a>
-          <a href="#" class="footer-link">가족 · 커플티</a>
-        </div>
-
-        <div class="footer-col">
-          <h5 class="footer-col-title">이용안내</h5>
-          <a href="#" class="footer-link">주문 가이드</a>
-          <a href="#" class="footer-link">원단 안내</a>
-          <a href="#" class="footer-link">사이즈 안내</a>
-          <a href="#" class="footer-link">자수 안내</a>
-          <a href="#" class="footer-link">인쇄 방법 안내</a>
-          <a href="#" class="footer-link">납기안심제</a>
-        </div>
-
-        <div class="footer-col">
-          <h5 class="footer-col-title">고객 지원</h5>
-          <a href="#" class="footer-link">공지 · 이벤트</a>
-          <a href="#" class="footer-link">포토 후기</a>
-          <a href="#" class="footer-link">자주 묻는 질문</a>
-          <a href="order-form.html" class="footer-link">견적 문의</a>
-          <a href="#" class="footer-link">주문 조회</a>
-          <a href="#" class="footer-link">카카오톡 상담</a>
-        </div>
-
-        <div class="footer-col">
-          <h5 class="footer-col-title">회사 정보</h5>
-          <a href="#" class="footer-link">마추다 소개</a>
-          <a href="#" class="footer-link">CEO 인사말</a>
-          <a href="#" class="footer-link">특허 · 인증 현황</a>
-          <a href="#" class="footer-link">제휴 · 도매 문의</a>
-          <a href="#" class="footer-link">채용 정보</a>
-          <a href="#" class="footer-link">찾아오시는 길</a>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="footer-bottom" id="footer-bottom">
-      <div class="footer-bottom-inner">
-        <p class="footer-corp-info">
-          상호: (주)마추다 · 대표자: 송지용 · 사업자등록번호: 000-00-00000 · 통신판매업신고번호: 제0000-서울중구-0000호
-        </p>
-        <div class="footer-bottom-links">
-          <a href="#">이용약관</a>
-          <a href="#" class="strong-link">개인정보처리방침</a>
-        </div>
-        <p class="footer-copyright">Copyright © 2024 MACHUDA Corp. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===== SECTION: NEW PRODUCTS (Cafe24 신상품 리스트 모듈 이식) ===== -->
+  <!-- ===== SECTION: NEW PRODUCTS (Cafe24 신상품 리스트 모듈) ===== -->
   <section class="section main_product_list content-section" data-ez-module="product-list/1" data-ez-layout="grid4" data-ez="contents-0l9dc3d-1">
     <div class="section-container">
       <div class="section-head">
@@ -992,23 +248,77 @@
     </div>
   </section>
 
-  <!-- ===== SECTION: 배송 지연 안내 롱배너 (Cafe24 롱텍스트 배너 모듈 이식) ===== -->
-  <section class="section main_text ez-textsize-medium ez-align-left content-section" data-ez-module="text/1" data-ez-role="style.background" data-ez-align="left" data-ez-textsize="medium" style="background-color: rgb(250, 247, 243); padding: 50px 0;" data-ez="contents-1v79i5x-1">
+  <!-- ===== SECTION: PROCESS ===== -->
+  <section class="content-section" id="section-process">
     <div class="section-container">
-      <div class="main_long_banner">
-        <div class="main_long_banner_txt">
-          <h3 class="main_long_banner_title" data-ez-role="title" style="font-size: 20px; font-weight: 700; margin-bottom: 10px;">배송 지연 안내</h3>
-          <div class="main_long_banner_desc" data-ez-role="desc" style="color: #555; line-height: 1.6;">
-            <p>추석 연휴 기간내의 택배배송은 진행하지 않습니다.</p>
-            <p>17일 이후의 택배 주문건은 23일 이후에 순차적으로 배송될 예정입니다.</p>
-          </div>
-          <div class="main_text_link" style="margin-top: 15px;"><a data-ez-role="a" href="#" target="_self" style="font-weight: 600; text-decoration: underline;">자세히 보기</a></div>
+      <div class="section-head">
+        <div class="section-badge-row">
+          <span class="section-eyebrow">ORDER PROCESS</span>
         </div>
+        <h2 class="section-title-main">주문부터 납품까지<br><strong>원스톱 제작 프로세스</strong></h2>
+        <p class="section-sub">복잡한 단체복 제작, 마추다 전담팀이 처음부터 끝까지 안내해 드립니다</p>
+      </div>
+
+      <div class="process-stepper" id="process-stepper">
+        <div class="step-connector-line"></div>
+
+        <div class="process-step" id="step-1">
+          <div class="step-number">01</div>
+          <div class="step-icon-wrap">
+            <span class="step-icon">📋</span>
+          </div>
+          <h4 class="step-title">견적 · 주문 접수</h4>
+          <p class="step-desc">스마트 주문서 또는 카카오톡으로 제품 종류, 수량, 원하는 디자인 방향을 알려주세요.</p>
+        </div>
+
+        <div class="process-step" id="step-2">
+          <div class="step-number">02</div>
+          <div class="step-icon-wrap">
+            <span class="step-icon">🎨</span>
+          </div>
+          <h4 class="step-title">시안 제작 · 수정</h4>
+          <p class="step-desc">전담 디자이너가 24시간 내 첫 시안을 제출. 무제한 수정으로 원하는 디자인까지.</p>
+        </div>
+
+        <div class="process-step" id="step-3">
+          <div class="step-number">03</div>
+          <div class="step-icon-wrap">
+            <span class="step-icon">✅</span>
+          </div>
+          <h4 class="step-title">시안 확정 · 결제</h4>
+          <p class="step-desc">시안 최종 확정 후 견적 금액 확인 및 결제. 전자결제·세금계산서 발행 가능.</p>
+        </div>
+
+        <div class="process-step" id="step-4">
+          <div class="step-number">04</div>
+          <div class="step-icon-wrap">
+            <span class="step-icon">🏭</span>
+          </div>
+          <h4 class="step-title">생산 · 검수</h4>
+          <p class="step-desc">직영 공장에서 전량 생산 후 QC팀이 한 장 한 장 직접 검수합니다.</p>
+        </div>
+
+        <div class="process-step" id="step-5">
+          <div class="step-number">05</div>
+          <div class="step-icon-wrap">
+            <span class="step-icon">🚚</span>
+          </div>
+          <h4 class="step-title">포장 · 납품</h4>
+          <p class="step-desc">개별 포장 후 약속된 납기일까지 안전하게 배송. 납기안심제로 일정을 보장합니다.</p>
+        </div>
+      </div>
+
+      <div class="process-cta-row" id="process-cta-row">
+        <a href="/order/basket.html" class="process-main-cta" id="process-cta-btn">지금 주문서 작성하기 →</a>
+        <a href="tel:02-2252-8082" class="process-phone-cta" id="process-phone-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          전화 상담 02-2252-8082
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ===== SECTION: WEEKLY HIGHLIGHT (Cafe24 상품 슬라이드 모듈 이식) ===== -->
+  <!-- ===== SECTION: WEEKLY HIGHLIGHT (Cafe24 상품 슬라이드 모듈) ===== -->
   <section class="section main_product_slide content-section" data-ez-module="product-list-slide/2" data-ez-layout="grid5_slide" data-ez="contents-0cx6zp0-1">
     <div class="section-container">
       <div class="section-head">
@@ -1029,7 +339,68 @@
     </div>
   </section>
 
-  <!-- ===== SECTION: BEST SELECT (Cafe24 카테고리 탭 리스트 모듈 이식) ===== -->
+  <!-- ===== SECTION: DELIVERY CASES ===== -->
+  <section class="content-section section-alt" id="section-cases">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-badge-row">
+          <span class="section-eyebrow">DELIVERY CASES</span>
+          <a href="/board/free/list.html" class="section-more-link" id="link-more-cases">납품사례 전체보기 →</a>
+        </div>
+        <h2 class="section-title-main">마추다가 납품한<br><strong>실제 제작 사례</strong></h2>
+      </div>
+
+      <div class="cases-grid" id="cases-grid">
+
+        <div class="case-card case-card--featured" id="case-1">
+          <div class="case-img-wrap">
+            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80" alt="태그멤버스 특양면 후드집업 납품사례" class="case-img" loading="lazy">
+            <div class="case-category-tag">자수 납품사례</div>
+          </div>
+          <div class="case-info">
+            <h4>국제학교 · 태그멤버스</h4>
+            <p>특양면 후드집업 150장 · 직자수 왼가슴 소형 &amp; 후면 대형 · 2024년</p>
+          </div>
+        </div>
+
+        <div class="case-card" id="case-2">
+          <div class="case-img-wrap">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80" alt="일산은혜교회 반팔티 납품사례" class="case-img" loading="lazy">
+            <div class="case-category-tag">나염 납품사례</div>
+          </div>
+          <div class="case-info">
+            <h4>종교/교회 · 일산은혜교회</h4>
+            <p>20수 라운드 반팔 350장 · 전면 로고 나염 &amp; 후면 특대형 나염 · 2024년</p>
+          </div>
+        </div>
+
+        <div class="case-card" id="case-3">
+          <div class="case-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544698310-74ea9d1c8258?auto=format&fit=crop&w=600&q=80" alt="안산2030 헤비 후드티 납품사례" class="case-img" loading="lazy">
+            <div class="case-category-tag">나염/필름 납품사례</div>
+          </div>
+          <div class="case-info">
+            <h4>러닝크루 · 안산2030</h4>
+            <p>헤비 쭈리 후드티 80장 · 전면 은분나염 &amp; 후면 특대형 은분나염 · 2024년</p>
+          </div>
+        </div>
+
+        <div class="case-card" id="case-4">
+          <div class="case-img-wrap">
+            <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80" alt="나주축협 올포켓 조끼 납품사례" class="case-img" loading="lazy">
+            <div class="case-category-tag">나염 납품사례</div>
+          </div>
+          <div class="case-info">
+            <h4>기업/축협 · 나주축협</h4>
+            <p>올포켓 조끼 120장 · 후면 대형 실크 나염 인쇄 · 2024년</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION: BEST SELECT (Cafe24 카테고리 탭 리스트 모듈) ===== -->
   <section class="section main_product_category content-section section-alt" data-ez-module="product-list-category/2" data-ez-layout="grid4_slide" data-ez="contents-0wjdnmn-1">
     <div class="section-container">
       <div class="main_product_inner">
@@ -1059,7 +430,6 @@
             </div>
           </div>
         </div>
-
         <div class="tabcontent" id="tabContent2" data-ez-role="content-item">
           <div data-ez-holder="product_listmain">
             <div module="product_listmain_2" class="ec-base-product swiper-container swiper03">
@@ -1070,7 +440,6 @@
             </div>
           </div>
         </div>
-
         <div class="tabcontent" id="tabContent3" data-ez-role="content-item">
           <div data-ez-holder="product_listmain">
             <div module="product_listmain_3" class="ec-base-product swiper-container swiper03">
@@ -1081,7 +450,6 @@
             </div>
           </div>
         </div>
-
         <div class="tabcontent" id="tabContent4" data-ez-role="content-item">
           <div data-ez-holder="product_listmain">
             <div module="product_listmain_4" class="ec-base-product swiper-container swiper03">
@@ -1096,34 +464,193 @@
     </div>
   </section>
 
-  <!-- ===== SECTION: OFFLINE STORE MAP (Cafe24 지도 모듈 이식) ===== -->
-  <section class="section main_map ez-align-left content-section" data-ez-module="map/1" data-ez-align="left" data-ez="contents-0hk3l8t-1">
+  <!-- ===== SECTION: PRINT METHODS ===== -->
+  <section class="content-section" id="section-print">
     <div class="section-container">
-      <div class="main_map_banner" style="position: relative; border-radius: 24px; overflow: hidden; background: #fafafa; min-height: 400px; display: flex; align-items: center;">
-        <div class="main_map_banner_txt_box" style="padding: 40px; z-index: 2; position: relative; max-width: 450px;">
-          <h3 class="main_map_banner_title" data-ez-role="title" style="font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 20px;">Archi Table<br>오프라인 스토어</h3>
-          <div class="map_txt" data-ez-role="desc" style="color: #555; line-height: 1.6; margin-bottom: 20px;">
-            <p><strong>주소</strong></p>
-            <p>서울특별시 동작구 보라매로0길 00</p>
-            <p><br></p>
-            <p><strong>운영시간</strong></p>
-            <p>오전 10시 ~ 오후 06시 (점심 12:00 ~ 13:00)</p>
-          </div>
-          <div class="main_long_banner_link"><span class="displaynone" data-ez-role="address">서울특별시 동작구 보라매로0길 00</span><a data-ez-role="a" href="https://www.google.com/maps/dir/서울특별시%20동작구%20보라매로0길%2000" target="_blank" style="background:#111; color:#fff; padding:10px 20px; border-radius:20px; font-weight:600; display:inline-block;">바로가기</a></div>
+      <div class="section-head">
+        <div class="section-badge-row">
+          <span class="section-eyebrow">PRINTING METHODS</span>
         </div>
-        <picture>
-          <source srcset="/SkinImg/img/main_map_pc.png" media="(max-width: 1024px)" data-ez-role="img-pc">
-          <img src="/SkinImg/img/main_map_pc.png" data-ez-role="img-mobile" loading="lazy" style="position: absolute; right: 0; top: 0; height: 100%; object-fit: cover; width: 60%; max-width: 700px;">
-        </picture>
+        <h2 class="section-title-main">마추다의 인쇄·가공 기법<br><strong>4가지 방식 완벽 지원</strong></h2>
+        <p class="section-sub">로고·텍스트·그림 등 디자인 성격에 맞는 최적의 기법을 추천해 드립니다</p>
+      </div>
+
+      <div class="print-methods-grid" id="print-methods-grid">
+        <div class="print-card" id="print-embroidery">
+          <div class="print-card-inner">
+            <div class="print-icon-wrap"><span class="print-icon">🧵</span></div>
+            <h4 class="print-name">자수 (Embroidery)</h4>
+            <p class="print-desc">실로 직접 수놓는 고급 기법. 텍스트·로고에 최적. 내구성이 가장 뛰어납니다.</p>
+            <ul class="print-features">
+              <li>✓ 고급스럽고 입체적인 표현</li>
+              <li>✓ 세탁 후에도 변형 없음</li>
+              <li>✓ 과잠·카라티에 권장</li>
+            </ul>
+          </div>
+        </div>
+        <div class="print-card" id="print-screen">
+          <div class="print-card-inner">
+            <div class="print-icon-wrap"><span class="print-icon">🖨️</span></div>
+            <h4 class="print-name">나염 (Screen Print)</h4>
+            <p class="print-desc">잉크를 스크린으로 눌러 인쇄. 대량 시 단가가 가장 낮고 색감이 선명합니다.</p>
+            <ul class="print-features">
+              <li>✓ 대량 주문 시 가장 경제적</li>
+              <li>✓ 선명하고 생생한 색감</li>
+              <li>✓ 단체티·행사복에 권장</li>
+            </ul>
+          </div>
+        </div>
+        <div class="print-card" id="print-transfer">
+          <div class="print-card-inner">
+            <div class="print-icon-wrap"><span class="print-icon">🔥</span></div>
+            <h4 class="print-name">전사 (Heat Transfer)</h4>
+            <p class="print-desc">열전사 방식으로 복잡한 풀컬러 이미지도 소량으로 정밀 인쇄 가능.</p>
+            <ul class="print-features">
+              <li>✓ 소량·복잡한 디자인에 최적</li>
+              <li>✓ 사진·그라데이션 표현 가능</li>
+              <li>✓ 스포츠팀·동아리 티에 권장</li>
+            </ul>
+          </div>
+        </div>
+        <div class="print-card" id="print-direct">
+          <div class="print-card-inner">
+            <div class="print-icon-wrap"><span class="print-icon">🎨</span></div>
+            <h4 class="print-name">실사 / DTG</h4>
+            <p class="print-desc">디지털 직접 인쇄 방식. 1장부터 복잡한 풀컬러 사진도 바로 인쇄 가능.</p>
+            <ul class="print-features">
+              <li>✓ 1장 소량 인쇄 가능</li>
+              <li>✓ 사진·일러스트 완벽 재현</li>
+              <li>✓ 샘플·소량 제작에 권장</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== SECTION: REVIEWS ===== -->
+  <section class="content-section section-alt" id="section-reviews">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-badge-row">
+          <span class="section-eyebrow">TESTIMONIALS</span>
+          <a href="/board/review/list.html" class="section-more-link" id="link-more-reviews">포토후기 전체보기 →</a>
+        </div>
+        <h2 class="section-title-main">12만 개 고객 후기가<br><strong>증명하는 마추다 퀄리티</strong></h2>
+        <p class="section-sub">평균 평점 4.97 / 5.0 · 재구매율 73%</p>
+      </div>
 
+      <div class="review-bento" id="review-bento">
+        <div class="review-card review-card--large" id="review-1">
+          <div class="review-header">
+            <div class="stars">★★★★★</div>
+            <span class="review-score">5.0</span>
+          </div>
+          <blockquote class="review-quote">"축제 일정에 맞춰 칼같이 납기해주셨어요! 학교 축제용 과잠으로 120장 주문했는데, 기한이 일주일밖에 안 남아서 초조했습니다. 마추다 납기안심제 덕분에 축제 하루 전날 여유 있게 전량 도착했고 봉제선이나 자수 퀄리티도 기가 막힙니다."</blockquote>
+          <div class="review-meta">
+            <strong>서울대학교 컴퓨터공학과 학생회</strong>
+            <span>과잠 120장 · 자수 포함</span>
+          </div>
+        </div>
+        <div class="review-card" id="review-2">
+          <div class="review-header">
+            <div class="stars">★★★★★</div>
+            <span class="review-score">4.9</span>
+          </div>
+          <blockquote class="review-quote">"디자이너 피드백이 빨라요. 로고 자수 도안이 복잡했는데, 대화창에서 3차까지 정밀 수정해 주셨습니다. 완전 대만족."</blockquote>
+          <div class="review-meta">
+            <strong>네이버 락밴드 동아리 회장</strong>
+            <span>후드티 50장 · 자수</span>
+          </div>
+        </div>
+        <div class="review-card" id="review-3">
+          <div class="review-header">
+            <div class="stars">★★★★★</div>
+            <span class="review-score">5.0</span>
+          </div>
+          <blockquote class="review-quote">"소량 주문도 친절하게. 가족 여행용 맨투맨 5장 소량이었는데도 시안부터 포장까지 꼼꼼히 신경 써 주셨어요."</blockquote>
+          <div class="review-meta">
+            <strong>개인 구매자 이서영 님</strong>
+            <span>맨투맨 5장 · 나염</span>
+          </div>
+        </div>
+        <div class="review-card review-card--stat" id="review-stat">
+          <div class="stat-hero">4.97</div>
+          <p class="stat-label">평균 별점</p>
+          <div class="stars stat-stars">★★★★★</div>
+          <p class="stat-sub">12만+ 누적 후기 기준</p>
+          <div class="stat-mini-grid">
+            <div><strong>98%</strong><span>납기 준수</span></div>
+            <div><strong>73%</strong><span>재구매율</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Machuda Real-Time Auto-Calculator Core (Migrated from anti/) -->
-  <link rel="stylesheet" href="/layout/basic/css/machuda-portfolio.css?v=20260629_v3">
-  <script src="/layout/basic/js/machuda-portfolio.js?v=20260629_v3"></script>
-  <script src="/layout/basic/js/index-page.js?v=20260629_v3"></script>
-</body>
-</html>
+  <!-- ===== SECTION: FAQ ===== -->
+  <section class="content-section" id="section-faq">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-badge-row">
+          <span class="section-eyebrow">FAQ</span>
+        </div>
+        <h2 class="section-title-main">자주 묻는 질문</h2>
+      </div>
+
+      <div class="faq-list" id="faq-list">
+        <div class="faq-item" id="faq-1">
+          <button class="faq-question" id="faq-q-1" aria-expanded="false">
+            <span>최소 주문 수량이 있나요?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a-1" aria-hidden="true">
+            <p>마추다는 소량 1장부터 제작이 가능합니다. 단, 품목 및 가공 방식에 따라 최소 수량 제한이 있을 수 있으니 견적 문의를 통해 확인해 주세요.</p>
+          </div>
+        </div>
+        <div class="faq-item" id="faq-2">
+          <button class="faq-question" id="faq-q-2" aria-expanded="false">
+            <span>납기는 얼마나 걸리나요?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a-2" aria-hidden="true">
+            <p>시안 확정 후 일반적으로 10~14일 소요됩니다. 선거복 등 긴급 제작의 경우 빠르면 3일 납기도 가능합니다. 마추다는 납기안심제를 운영하여 약속한 납기일을 지키지 못할 경우 보상을 제공합니다.</p>
+          </div>
+        </div>
+        <div class="faq-item" id="faq-3">
+          <button class="faq-question" id="faq-q-3" aria-expanded="false">
+            <span>시안을 먼저 보고 주문할 수 있나요?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a-3" aria-hidden="true">
+            <p>네, 가능합니다. 주문서를 제출하시면 전담 디자이너가 24시간 내 첫 번째 시안을 제출해 드립니다. 시안 확정 전까지는 비용이 발생하지 않으며, 무제한 수정이 가능합니다.</p>
+          </div>
+        </div>
+        <div class="faq-item" id="faq-4">
+          <button class="faq-question" id="faq-q-4" aria-expanded="false">
+            <span>세금계산서 발행이 가능한가요?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a-4" aria-hidden="true">
+            <p>네, 사업자 거래 시 세금계산서 발행이 가능합니다. 관공서·기업의 경우 견적서·거래명세서 등 필요 서류도 함께 제공해 드립니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="cta-banner-section" id="section-cta-banner">
+    <div class="cta-banner-inner">
+      <div class="cta-banner-text">
+        <h2 id="cta-banner-title">지금 바로 제작을 시작해보세요</h2>
+        <p id="cta-banner-sub">전담 디자이너가 시안부터 납품까지 처음부터 끝까지 함께합니다</p>
+      </div>
+      <div class="cta-banner-actions" id="cta-banner-actions">
+        <a href="/order/basket.html" class="cta-banner-btn-primary" id="cta-order-btn">주문서 작성 시작하기 →</a>
+        <a href="tel:02-2252-8082" class="cta-banner-btn-secondary" id="cta-phone-btn">📞 02-2252-8082</a>
+      </div>
+    </div>
+  </section>
+
+</div>

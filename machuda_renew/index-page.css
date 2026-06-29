@@ -53,30 +53,48 @@
   --pad-h: 24px;
 }
 
-/* ── Global Reset ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body.light-page {
+/* ── Cafe24 Scoped Reset (NOT global - only our content area) ── */
+#contents {
   background: var(--col-off);
   color: var(--col-text);
   font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
-a { text-decoration: none; color: inherit; }
-ul, ol { list-style: none; }
-img { display: block; max-width: 100%; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
+#contents .promo-carousel-section,
+#contents .circle-categories-section,
+#contents .trust-bar,
+#contents .main-content,
+#contents .content-section,
+#contents .cta-banner-section {
+  box-sizing: border-box;
+}
+
+#contents a { text-decoration: none; color: inherit; }
+#contents img { display: block; max-width: 100%; }
+#contents button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ── Cafe24 Container Override: 전체 폭 확장 ── */
+#container {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+#contents {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+/* ── Cafe24 Cleanup: 불필요한 기본 요소 숨김 ── */
+#contents > .RTMB { display: none !important; }
+.xans-smart-banner-admin-RES00005 { display: none !important; }
 
 /* ── Utility: Section Container ── */
 .section-container {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 var(--pad-h);
+  box-sizing: border-box;
 }
 
 .content-section {
@@ -1869,7 +1887,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .gnb-new-nav {
   display: flex;
+}
+.gnb-new-nav ul {
+  display: flex;
   gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.gnb-new-nav li {
+  list-style: none;
 }
 .gnb-new-link {
   font-size: 15px;
@@ -2068,9 +2095,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: 16px;
   overflow-x: auto;
   scrollbar-width: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .circle-categories-list::-webkit-scrollbar {
   display: none;
+}
+.circle-categories-list li {
+  list-style: none;
 }
 .circle-cat-item {
   display: flex;
@@ -2080,6 +2113,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   text-decoration: none;
   flex-shrink: 0;
   width: 100px;
+}
+.circle-cat-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
 }
 .circle-cat-icon-frame {
   width: 80px;
@@ -2364,5 +2404,95 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     display: inline-block !important;
     flex-shrink: 0 !important;
   }
+}
+
+/* ============================================================
+   CAFE24 SPECIFIC OVERRIDES & ENHANCEMENTS
+   카페24 라이브 환경 전용 스타일 보정
+   ============================================================ */
+
+/* 카페24 ec-base-product 상품 그리드 스타일 보정 */
+#contents .ec-base-product .prdList.grid4 {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#contents .ec-base-product .prdList.grid4 > li {
+  list-style: none !important;
+}
+
+@media (max-width: 768px) {
+  #contents .ec-base-product .prdList.grid4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+}
+
+/* 카페24 탭 버튼 스타일 */
+.main_product_tab {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 25px 0 !important;
+}
+.main_product_tab button {
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #f3f3f3;
+  color: #555;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.main_product_tab button:hover,
+.main_product_tab button.active {
+  background: #111;
+  color: #fff;
+}
+
+/* Swiper 슬라이드 영역 최소 높이 확보 */
+.highlight_slide .swiper-wrapper,
+.swiper03 .swiper-wrapper {
+  min-height: 300px;
+}
+
+/* 카페24 상품 카드 이미지 비율 보정 */
+#contents .ec-base-product .prdList li .thumbnail img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* 카페24 기본 더보기 버튼 스타일 보정 */
+#contents .btnMore {
+  display: inline-block;
+  background: #111 !important;
+  color: #fff !important;
+  padding: 12px 32px !important;
+  border-radius: 24px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease;
+}
+#contents .btnMore:hover {
+  background: var(--col-yellow) !important;
+  color: #111 !important;
+}
+
+/* 콘텐츠 영역 첫 섹션 상단 여백 */
+#contents > section:first-of-type,
+#contents > div:first-of-type {
+  margin-top: 0;
+}
+
+/* 이전 커스텀 헤더/푸터 스타일 비활성화 (layout.html이 담당) */
+.site-header-new,
+.site-footer,
+#top-banner-holder {
+  display: none !important;
 }
 
