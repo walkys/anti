@@ -97,6 +97,12 @@ const CONFIG_DATA = {
 
   // 카페24 서버 파싱 실패(로컬 파일 열기 상태) 감지 함수
   function checkIsLocalMode() {
+    const host = window.location.hostname;
+    const protocol = window.location.protocol;
+    // 깃허브 Pages, 로컬 호스트, 로컬 파일(file://)인 경우 100% 로컬 모드(모의 데이터)로 안전 가동
+    if (host.includes('github.io') || host.includes('localhost') || host.includes('127.0.0.1') || protocol === 'file:') {
+      return true;
+    }
     const checkEl = document.getElementById('gnb-menu-holder');
     if (!checkEl) return true;
     // HTML 소스 내에 카페24용 중괄호 변수 {$category_name} 등이 그대로 들어있다면 로컬 모드로 작동시킵니다.
@@ -342,5 +348,17 @@ const CONFIG_DATA = {
     if (tabButtons.length > 0) {
       tabButtons[0].click();
     }
+
+    // 9. 미파싱된 카페24 치환 변수({$로 시작) 링크 클릭 시 404 방지
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) {
+        const href = a.getAttribute('href');
+        if (href && (href.startsWith('{$') || href.includes('{$'))) {
+          e.preventDefault();
+          console.warn('Blocked navigation to unresolved Cafe24 variables:', href);
+        }
+      }
+    });
   }
 })();
