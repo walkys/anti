@@ -1,3 +1,7 @@
+<!--@layout(/layout/basic/layout.html)-->
+<!--@js(/layout/basic/js/main.js)-->
+<!--@css(/layout/basic/css/main.css)-->
+<!--@import(/smart-banner/shop1/smart-banner-admin-RES00005.html)-->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -73,7 +77,7 @@
   </header>
 
   <!-- ===== PROMO CARD CAROUSEL ===== -->
-  <section class="promo-carousel-section">
+  <section class="promo-carousel-section" data-ez-module="image-gallery/2" data-ez="contents-1hempev-1">
     <div class="promo-carousel-wrapper">
       <button class="slider-nav-btn prev-btn" id="promo-prev-btn" aria-label="이전 배너">‹</button>
       <div class="promo-carousel-track-wrapper">
@@ -957,6 +961,163 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== SECTION: NEW PRODUCTS (Cafe24 신상품 리스트 모듈 이식) ===== -->
+  <section class="section main_product_list content-section" data-ez-module="product-list/1" data-ez-layout="grid4" data-ez="contents-0l9dc3d-1">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-badge-row">
+          <span class="section-eyebrow" data-ez-role="title">New Product</span>
+        </div>
+        <h2 class="section-title-main">새롭게 입고된<br><strong>신상품들을 만나보세요</strong></h2>
+      </div>
+
+      <div data-ez-holder="product_listmain">
+        <div module="product_listmain_1" class="ec-base-product">
+          <!--
+            $count = 4
+            $basket_result = /product/add_basket.html
+            $basket_option = /product/basket_option.html
+            $moreview = yes
+            $cache = yes
+          -->
+          <ul class="prdList grid4 product-grid" data-ez-role="layout ez-discount-tag">
+            <!--@import(/product/list_product.html)-->
+          </ul>
+        </div>
+        <div module="product_listmore_1" class="more text-center" style="margin-top: 30px;">
+          <a href="#none" onclick="{$more_action}" class="btnMore" style="background: #111; color: #fff; padding: 12px 24px; border-radius: 24px; font-weight: 600;">More +</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION: 배송 지연 안내 롱배너 (Cafe24 롱텍스트 배너 모듈 이식) ===== -->
+  <section class="section main_text ez-textsize-medium ez-align-left content-section" data-ez-module="text/1" data-ez-role="style.background" data-ez-align="left" data-ez-textsize="medium" style="background-color: rgb(250, 247, 243); padding: 50px 0;" data-ez="contents-1v79i5x-1">
+    <div class="section-container">
+      <div class="main_long_banner">
+        <div class="main_long_banner_txt">
+          <h3 class="main_long_banner_title" data-ez-role="title" style="font-size: 20px; font-weight: 700; margin-bottom: 10px;">배송 지연 안내</h3>
+          <div class="main_long_banner_desc" data-ez-role="desc" style="color: #555; line-height: 1.6;">
+            <p>추석 연휴 기간내의 택배배송은 진행하지 않습니다.</p>
+            <p>17일 이후의 택배 주문건은 23일 이후에 순차적으로 배송될 예정입니다.</p>
+          </div>
+          <div class="main_text_link" style="margin-top: 15px;"><a data-ez-role="a" href="#" target="_self" style="font-weight: 600; text-decoration: underline;">자세히 보기</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION: WEEKLY HIGHLIGHT (Cafe24 상품 슬라이드 모듈 이식) ===== -->
+  <section class="section main_product_slide content-section" data-ez-module="product-list-slide/2" data-ez-layout="grid5_slide" data-ez="contents-0cx6zp0-1">
+    <div class="section-container">
+      <div class="section-head">
+        <div class="section-badge-row">
+          <span class="section-eyebrow" data-ez-role="title">Weekly Highlight</span>
+        </div>
+        <h2 class="section-title-main">이번 주 핫하게<br><strong>뜨고 있는 제품</strong></h2>
+      </div>
+
+      <div data-ez-holder="product_listmain" style="position: relative;">
+        <div module="product_listmain_1" class="ec-base-product swiper-container highlight_slide">
+          <ul class="swiper-wrapper prdList grid5_slide" data-ez-role="layout ez-discount-tag">
+            <!--@import(/product/list_product_slide.html)-->
+          </ul>
+          <div class="swiper-pagination swiper-pagination-highlight_product"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION: BEST SELECT (Cafe24 카테고리 탭 리스트 모듈 이식) ===== -->
+  <section class="section main_product_category content-section section-alt" data-ez-module="product-list-category/2" data-ez-layout="grid4_slide" data-ez="contents-0wjdnmn-1">
+    <div class="section-container">
+      <div class="main_product_inner">
+        <div class="section-head">
+          <div class="section-badge-row">
+            <span class="section-eyebrow" data-ez-role="title">Best Select</span>
+          </div>
+          <h2 class="section-title-main">고객님들이 셀렉한<br><strong>베스트 아이템</strong></h2>
+        </div>
+
+        <ul class="main_product_tab" data-ez-role="tab-list" style="display: flex; gap: 10px; margin-bottom: 25px;">
+          <li data-ez-role="tab-item"><button type="button" class="button" data-id="tabContent1" data-ez-role="name" data-name="새로운 카테고리">새로운 카테고리</button></li>
+          <li data-ez-role="tab-item"><button type="button" class="button" data-id="tabContent2" data-ez-role="name" data-name="새로운 카테고리">새로운 카테고리</button></li>
+          <li data-ez-role="tab-item"><button type="button" class="button" data-id="tabContent3" data-ez-role="name" data-name="새로운 카테고리">새로운 카테고리</button></li>
+          <li data-ez-role="tab-item"><button type="button" class="button" data-id="tabContent4" data-ez-role="name" data-name="새로운 카테고리">새로운 카테고리</button></li>
+        </ul>
+      </div>
+
+      <div class="content_list" data-ez-role="content-list">
+        <div class="tabcontent" id="tabContent1" data-ez-role="content-item">
+          <div data-ez-holder="product_listmain">
+            <div module="product_listmain_1" class="ec-base-product swiper-container swiper03">
+              <ul class="prdList grid4_slide swiper-wrapper" data-ez-role="layout ez-discount-tag">
+                <!--@import(/product/list_product_slide.html)-->
+              </ul>
+              <div class="swiper-scrollbar swiper-scrollbar_swiper03"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabcontent" id="tabContent2" data-ez-role="content-item">
+          <div data-ez-holder="product_listmain">
+            <div module="product_listmain_2" class="ec-base-product swiper-container swiper03">
+              <ul class="prdList grid4_slide swiper-wrapper" data-ez-role="layout ez-discount-tag">
+                <!--@import(/product/list_product_slide.html)-->
+              </ul>
+              <div class="swiper-scrollbar swiper-scrollbar_swiper03"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabcontent" id="tabContent3" data-ez-role="content-item">
+          <div data-ez-holder="product_listmain">
+            <div module="product_listmain_3" class="ec-base-product swiper-container swiper03">
+              <ul class="prdList grid4_slide swiper-wrapper" data-ez-role="layout ez-discount-tag">
+                <!--@import(/product/list_product_slide.html)-->
+              </ul>
+              <div class="swiper-scrollbar swiper-scrollbar_swiper03"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabcontent" id="tabContent4" data-ez-role="content-item">
+          <div data-ez-holder="product_listmain">
+            <div module="product_listmain_4" class="ec-base-product swiper-container swiper03">
+              <ul class="prdList grid4_slide swiper-wrapper" data-ez-role="layout ez-discount-tag">
+                <!--@import(/product/list_product_slide.html)-->
+              </ul>
+              <div class="swiper-scrollbar swiper-scrollbar_swiper03"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION: OFFLINE STORE MAP (Cafe24 지도 모듈 이식) ===== -->
+  <section class="section main_map ez-align-left content-section" data-ez-module="map/1" data-ez-align="left" data-ez="contents-0hk3l8t-1">
+    <div class="section-container">
+      <div class="main_map_banner" style="position: relative; border-radius: 24px; overflow: hidden; background: #fafafa; min-height: 400px; display: flex; align-items: center;">
+        <div class="main_map_banner_txt_box" style="padding: 40px; z-index: 2; position: relative; max-width: 450px;">
+          <h3 class="main_map_banner_title" data-ez-role="title" style="font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 20px;">Archi Table<br>오프라인 스토어</h3>
+          <div class="map_txt" data-ez-role="desc" style="color: #555; line-height: 1.6; margin-bottom: 20px;">
+            <p><strong>주소</strong></p>
+            <p>서울특별시 동작구 보라매로0길 00</p>
+            <p><br></p>
+            <p><strong>운영시간</strong></p>
+            <p>오전 10시 ~ 오후 06시 (점심 12:00 ~ 13:00)</p>
+          </div>
+          <div class="main_long_banner_link"><span class="displaynone" data-ez-role="address">서울특별시 동작구 보라매로0길 00</span><a data-ez-role="a" href="https://www.google.com/maps/dir/서울특별시%20동작구%20보라매로0길%2000" target="_blank" style="background:#111; color:#fff; padding:10px 20px; border-radius:20px; font-weight:600; display:inline-block;">바로가기</a></div>
+        </div>
+        <picture>
+          <source srcset="/SkinImg/img/main_map_pc.png" media="(max-width: 1024px)" data-ez-role="img-pc">
+          <img src="/SkinImg/img/main_map_pc.png" data-ez-role="img-mobile" loading="lazy" style="position: absolute; right: 0; top: 0; height: 100%; object-fit: cover; width: 60%; max-width: 700px;">
+        </picture>
+      </div>
+    </div>
+  </section>
 
 
 

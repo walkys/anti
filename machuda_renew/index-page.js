@@ -320,5 +320,27 @@ const CONFIG_DATA = {
       el.classList.add('fade-in-up');
       fadeObserver.observe(el);
     });
+
+    // 8. 카테고리 탭 (Best Select) 로컬 전환 인터랙션
+    const tabButtons = document.querySelectorAll('.main_product_tab button');
+    const tabContents = document.querySelectorAll('.content_list .tabcontent');
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const targetId = btn.getAttribute('data-id');
+        tabContents.forEach(content => {
+          if (content.id === targetId) {
+            content.style.display = 'block';
+          } else {
+            content.style.display = 'none';
+          }
+        });
+      });
+    });
+    // 첫번째 탭 활성화
+    if (tabButtons.length > 0) {
+      tabButtons[0].click();
+    }
   }
 })();
