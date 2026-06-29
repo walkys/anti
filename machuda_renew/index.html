@@ -11,8 +11,17 @@
   <div class="promo-carousel-wrapper">
     <button class="slider-nav-btn prev-btn" id="promo-prev-btn" aria-label="이전 배너">‹</button>
     <div class="promo-carousel-track-wrapper">
-      <div class="promo-carousel-track" id="promo-carousel-track">
-        <!-- 정적 프로모 카드 (카페24 배너매니저 앱 연동 시 동적 전환 가능) -->
+      <!-- df-banner-code를 추가하여 배너매니저 앱 연동 시 자동으로 관리자 등록 이미지 배너로 교체됩니다. -->
+      <div class="promo-carousel-track" id="promo-carousel-track" df-banner-code="main_promo">
+        
+        <!-- 배너매니저 동적 클론 템플릿 (배너매니저 연동 시 작동) -->
+        <div df-banner-clone class="promo-carousel-card" style="display: none;">
+          <a href="{#href}" target="{#target}">
+            {#item}
+          </a>
+        </div>
+
+        <!-- 정적 프로모 카드 (기본 노출 및 앱 백업용) -->
         <a href="/order/basket.html" class="promo-carousel-card card-theme-black">
           <div class="promo-card-content">
             <h3 class="promo-card-title">급건 전문 &amp; 빠른 제작</h3>

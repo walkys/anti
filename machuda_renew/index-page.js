@@ -214,14 +214,7 @@ const CONFIG_DATA = {
         `;
       }).join('');
     } else {
-      // 카페24 라이브 환경: 어드민 등록된 배너 리스트들에 CSS 클래스와 템플릿 테마 클래스를 순차 적용해 줍니다.
-      const cards = track.querySelectorAll('.promo-carousel-card');
-      const themes = ['black', 'blue-outline', 'gray', 'gray-empty'];
-      
-      cards.forEach((card, index) => {
-        const theme = themes[index % themes.length];
-        card.classList.add(`card-theme-${theme}`);
-      });
+      // 카페24 라이브 환경: 배너매니저 또는 HTML로 직접 구성하므로 별도의 클래스 강제 강제 덮어쓰기를 하지 않습니다.
     }
   }
 

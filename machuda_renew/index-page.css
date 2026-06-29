@@ -2637,6 +2637,22 @@
   overflow: hidden !important;
   transition: transform 0.25s ease, box-shadow 0.25s ease !important;
 }
+/* 배너매니저 동적 이미지 배너 호환성 패딩 제거 및 맞춤 */
+#contents .promo-carousel-card[df-banner-clone] {
+  padding: 0 !important;
+}
+#contents .promo-carousel-card[df-banner-clone] a {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+#contents .promo-carousel-card[df-banner-clone] img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 24px !important;
+  display: block !important;
+}
 #contents .promo-carousel-card.card-theme-black {
   background: #111111 !important;
   color: #ffffff !important;
