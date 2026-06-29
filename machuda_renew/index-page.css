@@ -2589,6 +2589,10 @@
   margin: 0 !important;
   padding: 0 8px !important;
 }
+/* 8개 카테고리만 노출하고 9번째부터는 숨김 */
+#contents .circle-categories-container .circle-categories-list:nth-of-type(n+9) {
+  display: none !important;
+}
 #contents .circle-cat-item {
   display: flex !important;
   flex-direction: column !important;
